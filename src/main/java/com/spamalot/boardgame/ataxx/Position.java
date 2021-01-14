@@ -1,6 +1,7 @@
 package com.spamalot.boardgame.ataxx;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Position {
 

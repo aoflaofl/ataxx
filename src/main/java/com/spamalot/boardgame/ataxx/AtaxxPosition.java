@@ -1,8 +1,9 @@
 package com.spamalot.boardgame.ataxx;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import com.spamalot.boardgame.ataxx.AtaxxMove.Type;
+import java.util.Set;
 
 public class AtaxxPosition implements Position {
   private Color board[][] = new Color[7][7];
@@ -10,15 +11,17 @@ public class AtaxxPosition implements Position {
 
   @Override
   public List<Move> getLegalMoves() {
+    Set<Move> moves = new HashSet<>();
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
         if (board[rank][file] == colorToMove) {
           System.out.println(rank + ", " + file);
-          generateMovesForPiece(rank, file);
+          moves.addAll(generateMovesForPiece(rank, file));
         }
       }
     }
-    return null;
+
+    return new ArrayList<Move>(moves);
   }
 
   /**
@@ -27,29 +30,29 @@ public class AtaxxPosition implements Position {
    * 
    * @param rank rank of square with piece
    * @param file file with square with piece
+   * @return
    */
-  private void generateMovesForPiece(int rank, int file) {
+  private Set<Move> generateMovesForPiece(int rank, int file) {
+    Set<Move> moves = new HashSet<>();
     int targetRank;
     int targetFile;
     for (int rankDelta = -2; rankDelta <= 2; rankDelta++) {
       targetRank = rank + rankDelta;
       if (targetRank >= 0 && targetRank < 7) {
         for (int fileDelta = -2; fileDelta <= 2; fileDelta++) {
-          targetFile = file + fileDelta;
-          if (rankDelta == 0 && fileDelta == 0 || board[targetRank][targetFile] != null) {
+          if (rankDelta == 0 && fileDelta == 0) {
             continue;
           }
-          if (targetFile >= 0 && targetFile < 7) {
-            generateMove(rank, file, rankDelta, fileDelta);
+          targetFile = file + fileDelta;
+          if (targetFile >= 0 && targetFile < 7 && board[targetRank][targetFile] == null) {
+            AtaxxMove move = new AtaxxMove(rank, file, rankDelta, fileDelta);
+            moves.add(move);
+            System.out.println(move);
           }
         }
       }
     }
-  }
-
-  private void generateMove(int rank, int file, int rankDelta, int fileDelta) {
-    AtaxxMove move = new AtaxxMove(rank, file, rankDelta, fileDelta);
-    System.out.println(move);
+    return moves;
   }
 
   @Override
