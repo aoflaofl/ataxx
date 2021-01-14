@@ -12,6 +12,6 @@ public class App
         AtaxxPosition game = new AtaxxPosition();
         game.printPosition();
         MinMax searcher = new MinMax();
-        searcher.minMax(game, 1);
+        searcher.moveList(game, 1);
     }
 }

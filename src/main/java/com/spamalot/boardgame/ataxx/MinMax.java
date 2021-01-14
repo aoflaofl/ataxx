@@ -3,6 +3,23 @@ package com.spamalot.boardgame.ataxx;
 import java.util.List;
 
 public class MinMax {
+  public void moveList(Position p, int depth) {
+    if (depth == 0) {
+      return;
+    }
+
+    List<Move> moves = p.getLegalMoves();
+
+    if (moves.isEmpty()) {
+      return;
+    }
+    for (Move m : moves) {
+      p.makeMove(m);
+      p.printMoves();
+      p.undoLastMove();
+    }
+  }
+
   public int minMax(Position p, int depth) {
 
     if (depth == 0) {

@@ -12,4 +12,6 @@ public interface Position {
 
   int evaluate();
 
+  void printMoves();
+
 }
