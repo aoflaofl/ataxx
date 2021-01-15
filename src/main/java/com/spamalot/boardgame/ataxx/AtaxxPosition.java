@@ -1,12 +1,19 @@
 package com.spamalot.boardgame.ataxx;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 class AtaxxPosition implements Position {
-  private final Color board[][] = new Color[7][7];
+  /**
+   * Logger for this class
+   */
+  private static final Logger logger = LoggerFactory.getLogger(AtaxxPosition.class);
+
+  private final Color[][] board = new Color[7][7];
   private final Color colorToMove = Color.WHITE;
 
   @Override
@@ -14,14 +21,12 @@ class AtaxxPosition implements Position {
     Set<Move> moves = new HashSet<>();
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
-        if (board[rank][file] == colorToMove) {
-          System.out.println(rank + ", " + file);
+        if (this.board[rank][file] == this.colorToMove) {
           moves.addAll(generateMovesForPiece(rank, file));
         }
       }
     }
-    System.out.println(moves);
-    return new ArrayList<Move>(moves);
+    return new ArrayList<>(moves);
   }
 
   /**
@@ -45,7 +50,7 @@ class AtaxxPosition implements Position {
             continue;
           }
           targetFile = file + fileDelta;
-          if (targetFile >= 0 && targetFile < 7 && board[targetRank][targetFile] != null) {
+          if (targetFile >= 0 && targetFile < 7 && this.board[targetRank][targetFile] == null) {
             moves.add(f.create(rank, file, rankDelta, fileDelta));
           }
         }
@@ -56,8 +61,7 @@ class AtaxxPosition implements Position {
 
   @Override
   public void makeMove(Move m) {
-    // TODO Auto-generated method stub
-
+    logger.info("Move: {}", m);
   }
 
   @Override
@@ -67,10 +71,10 @@ class AtaxxPosition implements Position {
   }
 
   public AtaxxPosition() {
-    board[0][0] = Color.BLACK;
-    board[6][6] = Color.BLACK;
-    board[6][0] = Color.WHITE;
-    board[0][6] = Color.WHITE;
+    this.board[0][0] = Color.BLACK;
+    this.board[6][6] = Color.BLACK;
+    this.board[6][0] = Color.WHITE;
+    this.board[0][6] = Color.WHITE;
   }
 
   @Override
@@ -80,21 +84,22 @@ class AtaxxPosition implements Position {
   }
 
   public void printPosition() {
+    StringBuilder sb = new StringBuilder();
     int rank = 7;
     for (int h = 0; h < 7; h++) {
-      System.out.print(rank + " ");
+      sb.append(rank + " ");
       rank--;
       for (int w = 0; w < 7; w++) {
-        System.out.print(board[h][w] == null ? " . " : board[h][w] == Color.BLACK ? " x " : " o ");
+        sb.append(this.board[h][w] == null ? " . " : this.board[h][w] == Color.BLACK ? " x " : " o ");
       }
-      System.out.println();
+      sb.append('\n');
     }
-    // System.out.println();
-    System.out.print("  ");
+    sb.append("  ");
     for (char i = 'a'; i < 'h'; i++) {
-      System.out.print(" " + i + " ");
+      sb.append(" " + i + " ");
     }
-    System.out.println();
+    sb.append("\nMove: ").append(this.colorToMove);
+    logger.info("\n{}", sb);
   }
 
   @Override

@@ -1,8 +1,16 @@
 package com.spamalot.boardgame.ataxx;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 class MinMax {
+  /**
+   * Logger for this class
+   */
+  private static final Logger logger = LoggerFactory.getLogger(MinMax.class);
+
   public void moveList(Position p, int depth) {
     if (depth == 0) {
       return;

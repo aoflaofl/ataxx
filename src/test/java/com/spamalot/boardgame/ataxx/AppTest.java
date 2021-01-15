@@ -1,5 +1,8 @@
 package com.spamalot.boardgame.ataxx;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -10,6 +13,11 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
+  /**
+   * Logger for this class
+   */
+  private static final Logger logger = LoggerFactory.getLogger(AppTest.class);
+
     /**
      * Create the test case
      *
