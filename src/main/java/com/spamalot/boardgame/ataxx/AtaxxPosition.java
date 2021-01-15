@@ -2,11 +2,9 @@ package com.spamalot.boardgame.ataxx;
 
 import java.util.List;
 
-import com.spamalot.boardgame.ataxx.AtaxxMove.Type;
-
-public class AtaxxPosition implements Position {
-  private Color board[][] = new Color[7][7];
-  private Color colorToMove = Color.WHITE;
+class AtaxxPosition implements Position {
+  private final Color board[][] = new Color[7][7];
+  private final Color colorToMove = Color.WHITE;
 
   @Override
   public List<Move> getLegalMoves() {
@@ -35,11 +33,11 @@ public class AtaxxPosition implements Position {
       targetRank = rank + rankDelta;
       if (targetRank >= 0 && targetRank < 7) {
         for (int fileDelta = -2; fileDelta <= 2; fileDelta++) {
-          targetFile = file + fileDelta;
-          if (rankDelta == 0 && fileDelta == 0 || board[targetRank][targetFile] != null) {
+          if (rankDelta == 0 && fileDelta == 0) {
             continue;
           }
-          if (targetFile >= 0 && targetFile < 7) {
+          targetFile = file + fileDelta;
+          if (targetFile >= 0 && targetFile < 7 && board[targetRank][targetFile] != null) {
             generateMove(rank, file, rankDelta, fileDelta);
           }
         }
@@ -48,7 +46,7 @@ public class AtaxxPosition implements Position {
   }
 
   private void generateMove(int rank, int file, int rankDelta, int fileDelta) {
-    AtaxxMove move = new AtaxxMove(rank, file, rankDelta, fileDelta);
+    AbstractAtaxxMove move = new AtaxxJumpMove(rank, file, rankDelta, fileDelta);
     System.out.println(move);
   }
 

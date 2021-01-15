@@ -2,7 +2,7 @@ package com.spamalot.boardgame.ataxx;
 
 import java.util.List;
 
-public class MinMax {
+class MinMax {
   public void moveList(Position p, int depth) {
     if (depth == 0) {
       return;

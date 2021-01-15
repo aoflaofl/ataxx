@@ -1,6 +1,6 @@
 package com.spamalot.boardgame.ataxx;
 
-public enum Color {
+enum Color {
   WHITE,
   BLACK
 }
