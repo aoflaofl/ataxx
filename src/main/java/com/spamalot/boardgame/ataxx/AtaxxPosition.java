@@ -1,6 +1,9 @@
 package com.spamalot.boardgame.ataxx;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 class AtaxxPosition implements Position {
   private final Color board[][] = new Color[7][7];
@@ -8,15 +11,17 @@ class AtaxxPosition implements Position {
 
   @Override
   public List<Move> getLegalMoves() {
+    Set<Move> moves = new HashSet<>();
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
         if (board[rank][file] == colorToMove) {
           System.out.println(rank + ", " + file);
-          generateMovesForPiece(rank, file);
+          moves.addAll(generateMovesForPiece(rank, file));
         }
       }
     }
-    return null;
+    System.out.println(moves);
+    return new ArrayList<Move>(moves);
   }
 
   /**
@@ -25,8 +30,11 @@ class AtaxxPosition implements Position {
    * 
    * @param rank rank of square with piece
    * @param file file with square with piece
+   * @return
    */
-  private void generateMovesForPiece(int rank, int file) {
+  private Set<Move> generateMovesForPiece(int rank, int file) {
+    Set<Move> moves = new HashSet<>();
+    AtaxxMoveFactory f = new AtaxxMoveFactory();
     int targetRank;
     int targetFile;
     for (int rankDelta = -2; rankDelta <= 2; rankDelta++) {
@@ -38,16 +46,12 @@ class AtaxxPosition implements Position {
           }
           targetFile = file + fileDelta;
           if (targetFile >= 0 && targetFile < 7 && board[targetRank][targetFile] != null) {
-            generateMove(rank, file, rankDelta, fileDelta);
+            moves.add(f.create(rank, file, rankDelta, fileDelta));
           }
         }
       }
     }
-  }
-
-  private void generateMove(int rank, int file, int rankDelta, int fileDelta) {
-    AbstractAtaxxMove move = new AtaxxJumpMove(rank, file, rankDelta, fileDelta);
-    System.out.println(move);
+    return moves;
   }
 
   @Override
