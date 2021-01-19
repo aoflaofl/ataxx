@@ -9,7 +9,7 @@ class AtaxxMoveFactory {
    */
   private static final Logger logger = LoggerFactory.getLogger(AtaxxMoveFactory.class);
 
-  Move create(int rank, int file, int rankDelta, int fileDelta) {
+  static Move create(int rank, int file, int rankDelta, int fileDelta) {
     if (rankDelta == 2 || rankDelta == -2 || fileDelta == 2 || fileDelta == -2) {
       logger.debug("Jump");
       return new AtaxxJumpMove(rank, file, rankDelta, fileDelta);

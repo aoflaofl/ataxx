@@ -39,7 +39,6 @@ class AtaxxPosition implements Position {
    */
   private Set<Move> generateMovesForPiece(int rank, int file) {
     Set<Move> moves = new HashSet<>();
-    AtaxxMoveFactory f = new AtaxxMoveFactory();
     int targetRank;
     int targetFile;
     for (int rankDelta = -2; rankDelta <= 2; rankDelta++) {
@@ -51,7 +50,7 @@ class AtaxxPosition implements Position {
           }
           targetFile = file + fileDelta;
           if (targetFile >= 0 && targetFile < 7 && this.board[targetRank][targetFile] == null) {
-            moves.add(f.create(rank, file, rankDelta, fileDelta));
+            moves.add(AtaxxMoveFactory.create(rank, file, rankDelta, fileDelta));
           }
         }
       }
