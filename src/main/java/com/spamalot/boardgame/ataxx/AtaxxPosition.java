@@ -1,20 +1,18 @@
 package com.spamalot.boardgame.ataxx;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class AtaxxPosition implements Position {
-  /**
-   * Logger for this class
-   */
+  /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(AtaxxPosition.class);
 
   private final Color[][] board = new Color[7][7];
-  private final Color colorToMove = Color.WHITE;
+  private Color colorToMove;
 
   @Override
   public List<Move> getLegalMoves() {
@@ -37,7 +35,7 @@ class AtaxxPosition implements Position {
    * @param file file with square with piece
    * @return
    */
-  private Set<Move> generateMovesForPiece(int rank, int file) {
+  private Set<Move> generateMovesForPiece(final int rank, final int file) {
     Set<Move> moves = new HashSet<>();
     int targetRank;
     int targetFile;
@@ -59,7 +57,7 @@ class AtaxxPosition implements Position {
   }
 
   @Override
-  public void makeMove(Move m) {
+  public void makeMove(final Move m) {
     logger.info("Move: {}", m);
   }
 
@@ -69,7 +67,8 @@ class AtaxxPosition implements Position {
 
   }
 
-  public AtaxxPosition() {
+  AtaxxPosition() {
+    colorToMove = Color.WHITE;
     this.board[0][0] = Color.BLACK;
     this.board[6][6] = Color.BLACK;
     this.board[6][0] = Color.WHITE;

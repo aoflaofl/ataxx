@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class AtaxxJumpMove extends AbstractAtaxxMove implements Move {
-  /**
-   * Logger for this class
-   */
+  /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(AtaxxJumpMove.class);
 
   private final int fromFile;
@@ -17,7 +15,9 @@ class AtaxxJumpMove extends AbstractAtaxxMove implements Move {
   private final String fromSquareName;
   private final String toSquareName;
 
-  public AtaxxJumpMove(int rank, int file, int rankDelta, int fileDelta) {
+  AtaxxJumpMove(final int rank, final int file, final int rankDelta, final int fileDelta) {
+    logger.debug("Making a jump move.");
+
     this.fromRank = rank;
     this.fromFile = file;
     this.toRank = rank + rankDelta;
@@ -29,7 +29,8 @@ class AtaxxJumpMove extends AbstractAtaxxMove implements Move {
 
   @Override
   public String toString() {
-    return "AtaxxJumpMove [fromFile=" + this.fromFile + ", fromRank=" + this.fromRank + ", toFile=" + this.toFile + ", toRank="
-        + this.toRank + ", fromSquareName=" + this.fromSquareName + ", toSquareName=" + this.toSquareName + "]";
+    return "AtaxxJumpMove [fromFile=" + this.fromFile + ", fromRank=" + this.fromRank + ", toFile=" + this.toFile
+        + ", toRank=" + this.toRank + ", fromSquareName=" + this.fromSquareName + ", toSquareName=" + this.toSquareName
+        + "]";
   }
 }

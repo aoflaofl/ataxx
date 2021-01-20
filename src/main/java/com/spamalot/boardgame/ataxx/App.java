@@ -4,16 +4,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Hello world!
+ * Play a game of Ataxx.
  *
  */
-public class App {
-  /**
-   * Logger for this class
-   */
+public final class App {
+  private App() {
+  }
+
+  /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-  public static void main(String[] args) {
+  /**
+   * Start here.
+   * 
+   * @param args The arguments
+   */
+  public static void main(final String[] args) {
     logger.info("Ataxx");
     AtaxxPosition game = new AtaxxPosition();
     game.printPosition();

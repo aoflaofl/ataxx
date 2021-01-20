@@ -12,7 +12,7 @@ class AtaxxGrowMove extends AbstractAtaxxMove implements Move {
 
   private final String toSquareName;
 
-  public AtaxxGrowMove(int rank, int file) {
+  AtaxxGrowMove(final int rank, final int file) {
     logger.debug("Making a grow move.");
     this.toRank = rank;
     this.toFile = file;
