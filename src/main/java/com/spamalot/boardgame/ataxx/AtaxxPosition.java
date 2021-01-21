@@ -1,10 +1,11 @@
 package com.spamalot.boardgame.ataxx;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,19 +15,20 @@ class AtaxxPosition implements Position {
 
   private final Color[][] board = new Color[7][7];
   private Color colorToMove;
-  private Stack<Move> movesMade = new Stack<>();
+  private Deque<Move> movesMade = new ArrayDeque<>();
+
+  AtaxxPosition() {
+    colorToMove = Color.WHITE;
+    this.board[0][0] = Color.BLACK;
+    this.board[6][6] = Color.BLACK;
+    this.board[6][0] = Color.WHITE;
+    this.board[0][6] = Color.WHITE;
+  }
 
   @Override
-  public List<Move> getLegalMoves() {
-    Set<Move> moves = new HashSet<>();
-    for (int rank = 0; rank < 7; rank++) {
-      for (int file = 0; file < 7; file++) {
-        if (this.board[rank][file] == this.colorToMove) {
-          moves.addAll(generateMovesForPiece(rank, file));
-        }
-      }
-    }
-    return new ArrayList<>(moves);
+  public int evaluate() {
+    // TODO Auto-generated method stub
+    return 0;
   }
 
   /**
@@ -59,50 +61,46 @@ class AtaxxPosition implements Position {
   }
 
   @Override
+  public List<Move> getLegalMoves() {
+    Set<Move> moves = new HashSet<>();
+    for (int rank = 0; rank < 7; rank++) {
+      for (int file = 0; file < 7; file++) {
+        if (this.board[rank][file] == this.colorToMove) {
+          moves.addAll(generateMovesForPiece(rank, file));
+        }
+      }
+    }
+    return new ArrayList<>(moves);
+  }
+
+  @Override
   public void makeMove(final Move m) {
     if (m instanceof AtaxxJumpMove) {
-      pickPiece(m.getFromRank(), m.getFromFile());
+      pickUpPiece(m.getFromRank(), m.getFromFile());
     }
-    putPiece(m.getToRank(), m.getToFile());
+    putDownPiece(m.getToRank(), m.getToFile());
     movesMade.push(m);
     logger.info("MoveList: {}", movesMade);
   }
 
-  private void pickPiece(int fromRank, int fromFile) {
+  private void pickUpPiece(int fromRank, int fromFile) {
     // TODO Do validation here.
     board[fromRank][fromFile] = null;
   }
 
-  private void putPiece(int toRank, int toFile) {
-    board[toRank][toFile] = colorToMove;
-  }
-
   @Override
-  public void undoLastMove() {
-    Move m = this.movesMade.pop();
-    pickPiece(m.getToRank(), m.getToFile());
-    if (m instanceof AtaxxJumpMove) {
-      putPiece(m.getFromRank(), m.getFromFile());
-    }
-  }
-
-  AtaxxPosition() {
-    colorToMove = Color.WHITE;
-    this.board[0][0] = Color.BLACK;
-    this.board[6][6] = Color.BLACK;
-    this.board[6][0] = Color.WHITE;
-    this.board[0][6] = Color.WHITE;
-  }
-
-  @Override
-  public int evaluate() {
+  public void printMoves() {
     // TODO Auto-generated method stub
-    return 0;
+
   }
 
   public void printPosition() {
 
     logger.info("\n{}", this);
+  }
+
+  private void putDownPiece(int toRank, int toFile) {
+    board[toRank][toFile] = colorToMove;
   }
 
   public String toString() {
@@ -125,9 +123,12 @@ class AtaxxPosition implements Position {
   }
 
   @Override
-  public void printMoves() {
-    // TODO Auto-generated method stub
-
+  public void undoLastMove() {
+    Move m = this.movesMade.pop();
+    pickUpPiece(m.getToRank(), m.getToFile());
+    if (m instanceof AtaxxJumpMove) {
+      putDownPiece(m.getFromRank(), m.getFromFile());
+    }
   }
 
 }
