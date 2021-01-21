@@ -101,6 +101,11 @@ class AtaxxPosition implements Position {
   }
 
   public void printPosition() {
+
+    logger.info("\n{}", this);
+  }
+
+  public String toString() {
     StringBuilder sb = new StringBuilder();
     int rank = 7;
     for (int h = 0; h < 7; h++) {
@@ -116,7 +121,7 @@ class AtaxxPosition implements Position {
       sb.append(" " + i + " ");
     }
     sb.append("\nMove: ").append(this.colorToMove);
-    logger.info("\n{}", sb);
+    return sb.toString();
   }
 
   @Override

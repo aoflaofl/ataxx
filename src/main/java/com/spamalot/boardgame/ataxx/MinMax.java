@@ -9,19 +9,21 @@ class MinMax {
   private static final Logger logger = LoggerFactory.getLogger(MinMax.class);
 
   public void moveList(final Position p, final int depth) {
-    logger.debug("Making move tree.");
     if (depth == 0) {
+      logger.info("Position:\n{}", p);
       return;
     }
 
     List<Move> moves = p.getLegalMoves();
 
     if (moves.isEmpty()) {
+      logger.info("Position:\n{}", p);
       return;
     }
     for (Move m : moves) {
       p.makeMove(m);
       p.printMoves();
+      moveList(p, depth - 1);
       p.undoLastMove();
     }
   }
