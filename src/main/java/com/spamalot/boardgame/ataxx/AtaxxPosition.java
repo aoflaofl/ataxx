@@ -79,8 +79,11 @@ class AtaxxPosition implements Position {
 
   @Override
   public void undoLastMove() {
-    // TODO Auto-generated method stub
-
+    Move m = this.movesMade.pop();
+    pickPiece(m.getToRank(), m.getToFile());
+    if (m instanceof AtaxxJumpMove) {
+      putPiece(m.getFromRank(), m.getFromFile());
+    }
   }
 
   AtaxxPosition() {
