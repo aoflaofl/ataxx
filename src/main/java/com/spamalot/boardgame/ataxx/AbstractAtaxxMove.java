@@ -3,7 +3,7 @@ package com.spamalot.boardgame.ataxx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-abstract class AbstractAtaxxMove {
+abstract class AbstractAtaxxMove implements Move {
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(AbstractAtaxxMove.class);
 
@@ -14,4 +14,5 @@ abstract class AbstractAtaxxMove {
     sb.append(7 - rank);
     return sb.toString();
   }
+
 }

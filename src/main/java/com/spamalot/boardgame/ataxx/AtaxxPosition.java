@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,7 @@ class AtaxxPosition implements Position {
 
   private final Color[][] board = new Color[7][7];
   private Color colorToMove;
+  private Stack<Move> movesMade = new Stack<>();
 
   @Override
   public List<Move> getLegalMoves() {
@@ -58,7 +60,21 @@ class AtaxxPosition implements Position {
 
   @Override
   public void makeMove(final Move m) {
-    logger.info("Move: {}", m);
+    if (m instanceof AtaxxJumpMove) {
+      pickPiece(m.getFromRank(), m.getFromFile());
+    }
+    putPiece(m.getToRank(), m.getToFile());
+    movesMade.push(m);
+    logger.info("MoveList: {}", movesMade);
+  }
+
+  private void pickPiece(int fromRank, int fromFile) {
+    // TODO Do validation here.
+    board[fromRank][fromFile] = null;
+  }
+
+  private void putPiece(int toRank, int toFile) {
+    board[toRank][toFile] = colorToMove;
   }
 
   @Override

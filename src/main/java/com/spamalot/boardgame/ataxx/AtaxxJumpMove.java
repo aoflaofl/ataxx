@@ -3,7 +3,7 @@ package com.spamalot.boardgame.ataxx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class AtaxxJumpMove extends AbstractAtaxxMove implements Move {
+class AtaxxJumpMove extends AbstractAtaxxMove {
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(AtaxxJumpMove.class);
 
@@ -32,5 +32,25 @@ class AtaxxJumpMove extends AbstractAtaxxMove implements Move {
     return "AtaxxJumpMove [fromFile=" + this.fromFile + ", fromRank=" + this.fromRank + ", toFile=" + this.toFile
         + ", toRank=" + this.toRank + ", fromSquareName=" + this.fromSquareName + ", toSquareName=" + this.toSquareName
         + "]";
+  }
+
+  @Override
+  public int getToRank() {
+    return toRank;
+  }
+
+  @Override
+  public int getToFile() {
+    return toFile;
+  }
+
+  @Override
+  public int getFromRank() {
+    return fromRank;
+  }
+
+  @Override
+  public int getFromFile() {
+    return fromFile;
   }
 }
