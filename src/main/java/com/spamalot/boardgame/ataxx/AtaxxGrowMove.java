@@ -14,7 +14,7 @@ class AtaxxGrowMove extends AbstractAtaxxMove {
 
   AtaxxGrowMove(final int rank, final int file) {
     if (rank < 0 || rank > 6 || file < 0 || file > 6) {
-      throw new IllegalArgumentException("000");
+      throw new IllegalArgumentException(String.format("One or more argument is out of range: [rank=%d, file=%d]", rank, file));
     }
     logger.debug("Making a grow move.");
     this.toRank = rank;
