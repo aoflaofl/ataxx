@@ -10,19 +10,12 @@ class AtaxxGrowMove extends AbstractAtaxxMove {
   private final int toFile;
   private final int toRank;
 
-  @Override
-  public int getToRank() {
-    return toRank;
-  }
-
-  @Override
-  public int getToFile() {
-    return toFile;
-  }
-
   private final String toSquareName;
 
   AtaxxGrowMove(final int rank, final int file) {
+    if (rank < 0 || rank > 6 || file < 0 || file > 6) {
+      throw new IllegalArgumentException("000");
+    }
     logger.debug("Making a grow move.");
     this.toRank = rank;
     this.toFile = file;
@@ -31,21 +24,29 @@ class AtaxxGrowMove extends AbstractAtaxxMove {
   }
 
   @Override
-  public String toString() {
-    return "AtaxxGrowMove [toFile=" + this.toFile + ", toRank=" + this.toRank + ", toSquareName=" + this.toSquareName
-        + "]";
+  public int getFromFile() {
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public int getFromRank() {
-    // TODO Auto-generated method stub
-    return 0;
+    throw new UnsupportedOperationException();
   }
 
   @Override
-  public int getFromFile() {
-    // TODO Auto-generated method stub
-    return 0;
+  public int getToFile() {
+    return this.toFile;
+  }
+
+  @Override
+  public int getToRank() {
+    return this.toRank;
+  }
+
+  @Override
+  public String toString() {
+    return "AtaxxGrowMove [toFile=" + this.toFile + ", toRank=" + this.toRank + ", toSquareName=" + this.toSquareName
+        + "]";
   }
 
 }

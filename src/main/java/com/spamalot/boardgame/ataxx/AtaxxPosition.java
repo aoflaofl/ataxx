@@ -14,11 +14,11 @@ class AtaxxPosition implements Position {
   private static final Logger logger = LoggerFactory.getLogger(AtaxxPosition.class);
 
   private final Color[][] board = new Color[7][7];
-  private Color colorToMove;
-  private Deque<Move> movesMade = new ArrayDeque<>();
+  private final Color colorToMove;
+  private final Deque<Move> movesMade = new ArrayDeque<>();
 
   AtaxxPosition() {
-    colorToMove = Color.WHITE;
+    this.colorToMove = Color.WHITE;
     this.board[0][0] = Color.BLACK;
     this.board[6][6] = Color.BLACK;
     this.board[6][0] = Color.WHITE;
@@ -79,13 +79,13 @@ class AtaxxPosition implements Position {
       pickUpPiece(m.getFromRank(), m.getFromFile());
     }
     putDownPiece(m.getToRank(), m.getToFile());
-    movesMade.push(m);
-    logger.info("MoveList: {}", movesMade);
+    this.movesMade.push(m);
+    logger.info("MoveList: {}", this.movesMade);
   }
 
-  private void pickUpPiece(int fromRank, int fromFile) {
+  private void pickUpPiece(final int fromRank, final int fromFile) {
     // TODO Do validation here.
-    board[fromRank][fromFile] = null;
+    this.board[fromRank][fromFile] = null;
   }
 
   @Override
@@ -99,10 +99,11 @@ class AtaxxPosition implements Position {
     logger.info("\n{}", this);
   }
 
-  private void putDownPiece(int toRank, int toFile) {
-    board[toRank][toFile] = colorToMove;
+  private void putDownPiece(final int toRank, final int toFile) {
+    this.board[toRank][toFile] = this.colorToMove;
   }
 
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     int rank = 7;

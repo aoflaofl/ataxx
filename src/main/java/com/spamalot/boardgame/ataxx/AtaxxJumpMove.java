@@ -36,21 +36,21 @@ class AtaxxJumpMove extends AbstractAtaxxMove {
 
   @Override
   public int getToRank() {
-    return toRank;
+    return this.toRank;
   }
 
   @Override
   public int getToFile() {
-    return toFile;
+    return this.toFile;
   }
 
   @Override
   public int getFromRank() {
-    return fromRank;
+    return this.fromRank;
   }
 
   @Override
   public int getFromFile() {
-    return fromFile;
+    return this.fromFile;
   }
 }
