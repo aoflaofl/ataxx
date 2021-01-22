@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import com.spamalot.boardgame.board.Move;
 
 public class AtaxxGrowMoveTest {
   private static final Logger logger = LoggerFactory.getLogger(AtaxxGrowMoveTest.class);

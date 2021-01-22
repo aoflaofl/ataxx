@@ -2,6 +2,7 @@ package com.spamalot.boardgame.ataxx;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.spamalot.boardgame.board.Move;
 
 abstract class AbstractAtaxxMove implements Move {
   /** Logger for this class. */

@@ -2,17 +2,18 @@ package com.spamalot.boardgame.ataxx;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.spamalot.boardgame.ai.MinMax;
 
 /**
  * Play a game of Ataxx.
  *
  */
-public final class App {
-  private App() {
+public final class Ataxx {
+  private Ataxx() {
   }
 
   /** Logger for this class. */
-  private static final Logger logger = LoggerFactory.getLogger(App.class);
+  private static final Logger logger = LoggerFactory.getLogger(Ataxx.class);
 
   /**
    * Start here.

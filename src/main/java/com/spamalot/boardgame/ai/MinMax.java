@@ -1,10 +1,12 @@
-package com.spamalot.boardgame.ataxx;
+package com.spamalot.boardgame.ai;
 
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.spamalot.boardgame.board.Move;
+import com.spamalot.boardgame.board.Position;
 
-class MinMax {
+public class MinMax {
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(MinMax.class);
 

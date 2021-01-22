@@ -1,4 +1,4 @@
-package com.spamalot.boardgame.ataxx;
+package com.spamalot.boardgame.board;
 
 /**
  * Define the interface to implement a simple move on a square board.
@@ -9,7 +9,7 @@ package com.spamalot.boardgame.ataxx;
  * @author gej
  *
  */
-interface Move {
+public interface Move {
 
   int getToRank();
 

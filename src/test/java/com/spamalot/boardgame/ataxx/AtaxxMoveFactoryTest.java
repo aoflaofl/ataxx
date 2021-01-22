@@ -2,6 +2,7 @@ package com.spamalot.boardgame.ataxx;
 
 import org.testng.annotations.Test;
 import org.testng.asserts.*;
+import com.spamalot.boardgame.board.Move;
 import junit.framework.Assert;
 
 public class AtaxxMoveFactoryTest {

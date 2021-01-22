@@ -1,8 +1,8 @@
-package com.spamalot.boardgame.ataxx;
+package com.spamalot.boardgame.board;
 
 import java.util.List;
 
-interface Position {
+public interface Position {
 
   List<Move> getLegalMoves();
 
