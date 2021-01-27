@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.spamalot.boardgame.board.Move;
 import com.spamalot.boardgame.board.Position;
+import com.spamalot.boardgame.pieces.Color;
 
 class AtaxxPosition implements Position {
   /** Logger for this class. */
