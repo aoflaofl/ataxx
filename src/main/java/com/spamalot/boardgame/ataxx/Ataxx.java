@@ -9,9 +9,6 @@ import com.spamalot.boardgame.ai.MinMax;
  *
  */
 public final class Ataxx {
-  private Ataxx() {
-  }
-
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(Ataxx.class);
 
