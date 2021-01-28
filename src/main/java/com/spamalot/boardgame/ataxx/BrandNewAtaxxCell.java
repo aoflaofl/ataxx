@@ -10,40 +10,22 @@ public class BrandNewAtaxxCell implements Cell<BrandNewAtaxxPiece> {
   private List<BrandNewAtaxxCell> growToCells = new ArrayList<>();
   private List<BrandNewAtaxxCell> jumpToCells = new ArrayList<>();
 
-  private int rank;
-
   public List<BrandNewAtaxxCell> getGrowToCells() {
-    return growToCells;
+    return this.growToCells;
   }
 
   public List<BrandNewAtaxxCell> getJumpToCells() {
-    return jumpToCells;
-  }
-
-  public int getRank() {
-    return rank;
-  }
-
-  public int getFile() {
-    return file;
+    return this.jumpToCells;
   }
 
   public String getCellName() {
-    return cellName;
+    return this.cellName;
   }
 
-  private int file;
   private String cellName;
 
-  public BrandNewAtaxxCell(int rank, int file) {
-    this.rank = rank;
-    this.file = file;
-
-    StringBuilder sb = new StringBuilder();
-    sb.append((char) ('a' + file));
-    sb.append(7 - rank);
-    this.cellName = sb.toString();
-
+  public BrandNewAtaxxCell(String cellName) {
+    this.cellName = cellName;
   }
 
   @Override

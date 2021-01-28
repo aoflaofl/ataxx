@@ -1,24 +1,43 @@
 package com.spamalot.boardgame.ataxx;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.spamalot.boardgame.board.Move;
 import com.spamalot.boardgame.board.Position;
 import com.spamalot.boardgame.pieces.Color;
 
 public class BrandNewAtaxxPosition implements Position {
+  /** Logger for this class. */
+  private static final Logger logger = LoggerFactory.getLogger(BrandNewAtaxxPosition.class);
   BrandNewAtaxxCell[][] board = new BrandNewAtaxxCell[7][7];
   private Color colorToMove;
 
   @Override
   public List<Move> getLegalMoves() {
-    // TODO Auto-generated method stub
+    for (int rank = 0; rank < 7; rank++) {
+      for (int file = 0; file < 7; file++) {
+        BrandNewAtaxxCell cell = board[rank][file];
+        if (!cell.isEmpty()) {
+          if (cell.getPiece().getColor() == colorToMove) {
+            logger.info(cell.getCellName());
+            for(BrandNewAtaxxCell c : cell.getGrowToCells()) {
+              logger.info("First order: {}", c.getCellName());
+            }
+            for(BrandNewAtaxxCell c : cell.getJumpToCells()) {
+              logger.info("Second order: {}", c.getCellName());
+            }
+          }
+        }
+      }
+    }
     return null;
   }
 
   public BrandNewAtaxxPosition() {
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
-        this.board[rank][file] = new BrandNewAtaxxCell(rank, file);
+        this.board[rank][file] = new BrandNewAtaxxCell(getCellName(rank, file));
       }
     }
 
@@ -34,6 +53,14 @@ public class BrandNewAtaxxPosition implements Position {
     this.board[6][6].setPiece(new BrandNewAtaxxPiece(Color.BLACK));
     this.board[6][0].setPiece(new BrandNewAtaxxPiece(Color.WHITE));
     this.board[0][6].setPiece(new BrandNewAtaxxPiece(Color.WHITE));
+  }
+
+  private String getCellName(int rank, int file) {
+    StringBuilder sb = new StringBuilder();
+    sb.append((char) ('a' + file));
+    sb.append(7 - rank);
+    String cellName = sb.toString();
+    return cellName;
   }
 
   private void initCellLinks(int rank, int file) {
