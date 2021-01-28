@@ -2,6 +2,12 @@ package com.spamalot.boardgame.board;
 
 import com.spamalot.boardgame.pieces.Piece;
 
-public interface Cell {
-  Piece getPiece();
+public interface Cell<T extends Piece> {
+  void setPiece(T p);
+
+  T getPiece();
+
+  void removePiece();
+
+  boolean isEmpty();
 }
