@@ -44,8 +44,10 @@ public class BrandNewAtaxxCell implements Cell<BrandNewAtaxxPiece> {
   }
 
   @Override
-  public void removePiece() {
+  public BrandNewAtaxxPiece removePiece() {
+    BrandNewAtaxxPiece ret = this.piece;
     this.piece = null;
+    return ret;
   }
 
   void addGrowToCell(BrandNewAtaxxCell cell) {
