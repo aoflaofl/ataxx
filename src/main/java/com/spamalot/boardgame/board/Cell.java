@@ -1,5 +1,6 @@
 package com.spamalot.boardgame.board;
 
+import com.spamalot.boardgame.ataxx.BrandNewAtaxxPiece;
 import com.spamalot.boardgame.pieces.Piece;
 
 public interface Cell<T extends Piece> {
@@ -7,7 +8,7 @@ public interface Cell<T extends Piece> {
 
   T getPiece();
 
-  void removePiece();
+  BrandNewAtaxxPiece removePiece();
 
   boolean isEmpty();
 }
