@@ -1,15 +1,12 @@
 package com.spamalot.boardgame.ai;
 
-import com.spamalot.boardgame.board.Cell;
 import com.spamalot.boardgame.board.Move;
 import com.spamalot.boardgame.board.Position;
-import com.spamalot.boardgame.pieces.Piece;
-
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MinMax<P extends Position, M extends Move<? extends Cell<? extends Piece>>> {
+public class MinMax<P extends Position, M extends Move> {
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(MinMax.class);
 
