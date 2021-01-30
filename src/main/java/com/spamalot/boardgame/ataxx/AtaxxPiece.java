@@ -3,10 +3,10 @@ package com.spamalot.boardgame.ataxx;
 import com.spamalot.boardgame.pieces.Color;
 import com.spamalot.boardgame.pieces.Piece;
 
-class BrandNewAtaxxPiece implements Piece {
+class AtaxxPiece implements Piece {
   private Color color;
 
-  public BrandNewAtaxxPiece(Color c) {
+  public AtaxxPiece(Color c) {
     this.color = c;
   }
 

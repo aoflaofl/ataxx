@@ -22,7 +22,7 @@ public final class Ataxx {
     // game.printPosition();
     // MinMax searcher = new MinMax();
     // searcher.moveList(game, 1);
-    BrandNewAtaxxPosition pos = new BrandNewAtaxxPosition();
+    AtaxxPosition pos = new AtaxxPosition();
     pos.getLegalMoves();
   }
 }

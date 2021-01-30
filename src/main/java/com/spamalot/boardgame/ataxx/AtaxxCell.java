@@ -4,9 +4,9 @@ import com.spamalot.boardgame.board.Cell;
 import java.util.ArrayList;
 import java.util.List;
 
-class AtaxxCell implements Cell<BrandNewAtaxxPiece> {
+class AtaxxCell implements Cell<AtaxxPiece> {
 
-  private BrandNewAtaxxPiece piece;
+  private AtaxxPiece piece;
 
   private final List<AtaxxCell> growToCells = new ArrayList<>();
   private final List<AtaxxCell> jumpToCells = new ArrayList<>();
@@ -30,12 +30,12 @@ class AtaxxCell implements Cell<BrandNewAtaxxPiece> {
   }
 
   @Override
-  public void setPiece(BrandNewAtaxxPiece p) {
+  public void setPiece(AtaxxPiece p) {
     this.piece = p;
   }
 
   @Override
-  public BrandNewAtaxxPiece getPiece() {
+  public AtaxxPiece getPiece() {
     return this.piece;
   }
 
@@ -45,8 +45,8 @@ class AtaxxCell implements Cell<BrandNewAtaxxPiece> {
   }
 
   @Override
-  public BrandNewAtaxxPiece removePiece() {
-    BrandNewAtaxxPiece ret = this.piece;
+  public AtaxxPiece removePiece() {
+    AtaxxPiece ret = this.piece;
     this.piece = null;
     return ret;
   }

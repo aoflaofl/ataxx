@@ -1,18 +1,16 @@
 package com.spamalot.boardgame.ataxx;
 
-class BrandNewAtaxxJumpMove implements BrandNewAtaxxMove {
+class AtaxxGrowMove implements AtaxxMove {
 
-  private final AtaxxCell fromCell;
   private final AtaxxCell toCell;
 
-  public BrandNewAtaxxJumpMove(AtaxxCell fromCell, AtaxxCell toCell) {
-    this.fromCell = fromCell;
+  public AtaxxGrowMove(AtaxxCell toCell) {
     this.toCell = toCell;
   }
 
   @Override
   public AtaxxCell getFromCell() {
-    return this.fromCell;
+    return null;
   }
 
   @Override

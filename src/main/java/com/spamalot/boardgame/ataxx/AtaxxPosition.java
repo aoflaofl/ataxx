@@ -9,15 +9,15 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class BrandNewAtaxxPosition implements Position<BrandNewAtaxxMove> {
+class AtaxxPosition implements Position<AtaxxMove> {
   /** Logger for this class. */
-  private static final Logger logger = LoggerFactory.getLogger(BrandNewAtaxxPosition.class);
+  private static final Logger logger = LoggerFactory.getLogger(AtaxxPosition.class);
   private final AtaxxCell[][] board = new AtaxxCell[7][7];
   private final Color colorToMove;
 
   @Override
-  public List<BrandNewAtaxxMove> getLegalMoves() {
-    Set<BrandNewAtaxxMove> moveList = new HashSet<>();
+  public List<AtaxxMove> getLegalMoves() {
+    Set<AtaxxMove> moveList = new HashSet<>();
 
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
@@ -31,21 +31,21 @@ class BrandNewAtaxxPosition implements Position<BrandNewAtaxxMove> {
     return new ArrayList<>(moveList);
   }
 
-  private static List<BrandNewAtaxxMove> moveList(AtaxxCell cell) {
-    List<BrandNewAtaxxMove> moveList = new ArrayList<>();
+  private static List<AtaxxMove> moveList(AtaxxCell cell) {
+    List<AtaxxMove> moveList = new ArrayList<>();
     for (AtaxxCell c : cell.getGrowToCells()) {
       logger.info("First order: {}", c.getCellName());
-      moveList.add(new BrandNewAtaxxGrowMove(c));
+      moveList.add(new AtaxxGrowMove(c));
     }
     for (AtaxxCell c : cell.getJumpToCells()) {
       logger.info("Second order: {}", c.getCellName());
-      moveList.add(new BrandNewAtaxxJumpMove(cell, c));
+      moveList.add(new AtaxxJumpMove(cell, c));
     }
 
     return moveList;
   }
 
-  public BrandNewAtaxxPosition() {
+  public AtaxxPosition() {
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
         this.board[rank][file] = new AtaxxCell(getCellName(rank, file));
@@ -60,10 +60,10 @@ class BrandNewAtaxxPosition implements Position<BrandNewAtaxxMove> {
 
     this.colorToMove = Color.WHITE;
 
-    this.board[0][0].setPiece(new BrandNewAtaxxPiece(Color.BLACK));
-    this.board[6][6].setPiece(new BrandNewAtaxxPiece(Color.BLACK));
-    this.board[6][0].setPiece(new BrandNewAtaxxPiece(Color.WHITE));
-    this.board[0][6].setPiece(new BrandNewAtaxxPiece(Color.WHITE));
+    this.board[0][0].setPiece(new AtaxxPiece(Color.BLACK));
+    this.board[6][6].setPiece(new AtaxxPiece(Color.BLACK));
+    this.board[6][0].setPiece(new AtaxxPiece(Color.WHITE));
+    this.board[0][6].setPiece(new AtaxxPiece(Color.WHITE));
   }
 
   private static String getCellName(int rank, int file) {
@@ -121,7 +121,7 @@ class BrandNewAtaxxPosition implements Position<BrandNewAtaxxMove> {
   }
 
   @Override
-  public void makeMove(BrandNewAtaxxMove m) {
+  public void makeMove(AtaxxMove m) {
     // TODO Auto-generated method stub
 
   }
