@@ -1,20 +1,21 @@
 package com.spamalot.boardgame.ataxx;
 
-import java.util.*;
 import com.spamalot.boardgame.board.Cell;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BrandNewAtaxxCell implements Cell<BrandNewAtaxxPiece> {
+class AtaxxCell implements Cell<BrandNewAtaxxPiece> {
 
-  BrandNewAtaxxPiece piece;
+  private BrandNewAtaxxPiece piece;
 
-  private List<BrandNewAtaxxCell> growToCells = new ArrayList<>();
-  private List<BrandNewAtaxxCell> jumpToCells = new ArrayList<>();
+  private final List<AtaxxCell> growToCells = new ArrayList<>();
+  private final List<AtaxxCell> jumpToCells = new ArrayList<>();
 
-  public List<BrandNewAtaxxCell> getGrowToCells() {
+  public List<AtaxxCell> getGrowToCells() {
     return this.growToCells;
   }
 
-  public List<BrandNewAtaxxCell> getJumpToCells() {
+  public List<AtaxxCell> getJumpToCells() {
     return this.jumpToCells;
   }
 
@@ -22,9 +23,9 @@ public class BrandNewAtaxxCell implements Cell<BrandNewAtaxxPiece> {
     return this.cellName;
   }
 
-  private String cellName;
+  private final String cellName;
 
-  public BrandNewAtaxxCell(String cellName) {
+  public AtaxxCell(String cellName) {
     this.cellName = cellName;
   }
 
@@ -48,11 +49,11 @@ public class BrandNewAtaxxCell implements Cell<BrandNewAtaxxPiece> {
     this.piece = null;
   }
 
-  void addGrowToCell(BrandNewAtaxxCell cell) {
+  void addGrowToCell(AtaxxCell cell) {
     this.growToCells.add(cell);
   }
 
-  void addJumpToCell(BrandNewAtaxxCell cell) {
+  void addJumpToCell(AtaxxCell cell) {
     this.jumpToCells.add(cell);
   }
 

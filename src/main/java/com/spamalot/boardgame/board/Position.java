@@ -1,12 +1,13 @@
 package com.spamalot.boardgame.board;
 
+import com.spamalot.boardgame.pieces.Piece;
 import java.util.List;
 
-public interface Position {
+public interface Position<T extends Move<? extends Cell<? extends Piece>>> {
 
-  List<Move> getLegalMoves();
+  List<T> getLegalMoves();
 
-  void makeMove(Move m);
+  void makeMove(T m);
 
   void undoLastMove();
 

@@ -1,43 +1,54 @@
 package com.spamalot.boardgame.ataxx;
 
-import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.spamalot.boardgame.board.Move;
 import com.spamalot.boardgame.board.Position;
 import com.spamalot.boardgame.pieces.Color;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class BrandNewAtaxxPosition implements Position {
+class BrandNewAtaxxPosition implements Position<BrandNewAtaxxMove> {
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(BrandNewAtaxxPosition.class);
-  BrandNewAtaxxCell[][] board = new BrandNewAtaxxCell[7][7];
-  private Color colorToMove;
+  private final AtaxxCell[][] board = new AtaxxCell[7][7];
+  private final Color colorToMove;
 
   @Override
-  public List<Move> getLegalMoves() {
+  public List<BrandNewAtaxxMove> getLegalMoves() {
+    Set<BrandNewAtaxxMove> moveList = new HashSet<>();
+
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
-        BrandNewAtaxxCell cell = board[rank][file];
-        if (!cell.isEmpty()) {
-          if (cell.getPiece().getColor() == colorToMove) {
-            logger.info(cell.getCellName());
-            for(BrandNewAtaxxCell c : cell.getGrowToCells()) {
-              logger.info("First order: {}", c.getCellName());
-            }
-            for(BrandNewAtaxxCell c : cell.getJumpToCells()) {
-              logger.info("Second order: {}", c.getCellName());
-            }
-          }
+        AtaxxCell cell = this.board[rank][file];
+        if (!cell.isEmpty() && cell.getPiece().getColor() == this.colorToMove) {
+          logger.info(cell.getCellName());
+          moveList.addAll(moveList(cell));
         }
       }
     }
-    return null;
+    return new ArrayList<>(moveList);
+  }
+
+  private static List<BrandNewAtaxxMove> moveList(AtaxxCell cell) {
+    List<BrandNewAtaxxMove> moveList = new ArrayList<>();
+    for (AtaxxCell c : cell.getGrowToCells()) {
+      logger.info("First order: {}", c.getCellName());
+      moveList.add(new BrandNewAtaxxGrowMove(c));
+    }
+    for (AtaxxCell c : cell.getJumpToCells()) {
+      logger.info("Second order: {}", c.getCellName());
+      moveList.add(new BrandNewAtaxxJumpMove(cell, c));
+    }
+
+    return moveList;
   }
 
   public BrandNewAtaxxPosition() {
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
-        this.board[rank][file] = new BrandNewAtaxxCell(getCellName(rank, file));
+        this.board[rank][file] = new AtaxxCell(getCellName(rank, file));
       }
     }
 
@@ -55,12 +66,11 @@ public class BrandNewAtaxxPosition implements Position {
     this.board[0][6].setPiece(new BrandNewAtaxxPiece(Color.WHITE));
   }
 
-  private String getCellName(int rank, int file) {
+  private static String getCellName(int rank, int file) {
     StringBuilder sb = new StringBuilder();
     sb.append((char) ('a' + file));
     sb.append(7 - rank);
-    String cellName = sb.toString();
-    return cellName;
+    return sb.toString();
   }
 
   private void initCellLinks(int rank, int file) {
@@ -86,16 +96,10 @@ public class BrandNewAtaxxPosition implements Position {
 
   private void addCellLink(int rank, int file, int rankDelta, int fileDelta) {
     if (rankDelta == 2 || rankDelta == -2 || fileDelta == 2 || fileDelta == -2) {
-      board[rank][file].addJumpToCell(board[rank + rankDelta][file + fileDelta]);
+      this.board[rank][file].addJumpToCell(this.board[rank + rankDelta][file + fileDelta]);
     } else {
-      board[rank][file].addGrowToCell(board[rank + rankDelta][file + fileDelta]);
+      this.board[rank][file].addGrowToCell(this.board[rank + rankDelta][file + fileDelta]);
     }
-  }
-
-  @Override
-  public void makeMove(Move m) {
-    // TODO Auto-generated method stub
-
   }
 
   @Override
@@ -112,6 +116,12 @@ public class BrandNewAtaxxPosition implements Position {
 
   @Override
   public void printMoves() {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void makeMove(BrandNewAtaxxMove m) {
     // TODO Auto-generated method stub
 
   }
