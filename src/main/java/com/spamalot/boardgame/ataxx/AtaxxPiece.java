@@ -20,4 +20,8 @@ class AtaxxPiece implements Piece {
     return this.color;
   }
 
+  @Override
+  public String toString() {
+    return this.color.toString();
+  }
 }

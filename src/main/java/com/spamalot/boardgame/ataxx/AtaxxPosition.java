@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 class AtaxxPosition implements Position<AtaxxMove> {
   /** Logger for this class. */
   private static final Logger logger = LoggerFactory.getLogger(AtaxxPosition.class);
+
   private final AtaxxCell[][] board = new AtaxxCell[7][7];
   private final Color colorToMove;
 
@@ -60,16 +61,16 @@ class AtaxxPosition implements Position<AtaxxMove> {
 
     this.colorToMove = Color.WHITE;
 
-    this.board[0][0].setPiece(new AtaxxPiece(Color.BLACK));
-    this.board[6][6].setPiece(new AtaxxPiece(Color.BLACK));
-    this.board[6][0].setPiece(new AtaxxPiece(Color.WHITE));
-    this.board[0][6].setPiece(new AtaxxPiece(Color.WHITE));
+    this.board[0][0].setPiece(new AtaxxPiece(Color.WHITE));
+    this.board[6][6].setPiece(new AtaxxPiece(Color.WHITE));
+    this.board[6][0].setPiece(new AtaxxPiece(Color.BLACK));
+    this.board[0][6].setPiece(new AtaxxPiece(Color.BLACK));
   }
 
   private static String getCellName(int rank, int file) {
     StringBuilder sb = new StringBuilder();
     sb.append((char) ('a' + file));
-    sb.append(7 - rank);
+    sb.append(rank + 1);
     return sb.toString();
   }
 
@@ -126,4 +127,21 @@ class AtaxxPosition implements Position<AtaxxMove> {
 
   }
 
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    for (int rank = 6; rank >= 0; rank--) {
+      sb.append(rank + 1).append(" ");
+      for (int file = 0; file < 7; file++) {
+        sb.append(this.board[rank][file]);
+      }
+      sb.append('\n');
+    }
+    sb.append("  ");
+    for (int i = 0; i < 7; i++) {
+      sb.append((char) ('a' + i));
+    }
+    return sb.toString();
+  }
 }

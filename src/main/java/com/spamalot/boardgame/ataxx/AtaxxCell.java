@@ -59,4 +59,11 @@ class AtaxxCell implements Cell<AtaxxPiece> {
     this.jumpToCells.add(cell);
   }
 
+  @Override
+  public String toString() {
+    if (this.piece != null) {
+      return this.piece.toString();
+    }
+    return ".";
+  }
 }

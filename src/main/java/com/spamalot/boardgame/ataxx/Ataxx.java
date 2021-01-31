@@ -20,11 +20,10 @@ public final class Ataxx {
    */
   public static void main(final String[] args) {
     logger.info("Ataxx");
-    // AtaxxPosition game = new AtaxxPosition();
-    // game.printPosition();
-    MinMax<AtaxxPosition, AtaxxMove> searcher = new MinMax<>();
+    AtaxxPosition game = new AtaxxPosition();
+    logger.info("Position:\n{}", game);
+    game.getLegalMoves();
+    //MinMax<AtaxxPosition, AtaxxMove> searcher = new MinMax<>();
     // searcher.moveList(game, 1);
-    AtaxxPosition pos = new AtaxxPosition();
-    pos.getLegalMoves();
   }
 }
