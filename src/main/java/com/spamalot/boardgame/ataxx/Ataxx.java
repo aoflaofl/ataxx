@@ -20,7 +20,7 @@ public final class Ataxx {
    */
   public static void main(final String[] args) {
     logger.info("Ataxx");
-    AtaxxPosition game = new AtaxxPosition();
+    AbstractAtaxxBoard game = new AtaxxSquareBoard();
     logger.info("Position:\n{}", game);
     game.getLegalMoves();
     //MinMax<AtaxxPosition, AtaxxMove> searcher = new MinMax<>();

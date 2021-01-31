@@ -1,6 +1,5 @@
 package com.spamalot.boardgame.ataxx;
 
-import com.spamalot.boardgame.board.Position;
 import com.spamalot.boardgame.pieces.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,9 +8,9 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class AtaxxPosition implements Position<AtaxxMove> {
+class AtaxxSquareBoard extends AbstractAtaxxBoard {
   /** Logger for this class. */
-  private static final Logger logger = LoggerFactory.getLogger(AtaxxPosition.class);
+  static final Logger logger = LoggerFactory.getLogger(AtaxxSquareBoard.class);
 
   private final AtaxxCell[][] board = new AtaxxCell[7][7];
   private final Color colorToMove;
@@ -32,21 +31,18 @@ class AtaxxPosition implements Position<AtaxxMove> {
     return new ArrayList<>(moveList);
   }
 
-  private static List<AtaxxMove> moveList(AtaxxCell cell) {
-    List<AtaxxMove> moveList = new ArrayList<>();
-    for (AtaxxCell c : cell.getGrowToCells()) {
-      logger.info("First order: {}", c.getCellName());
-      moveList.add(new AtaxxGrowMove(c));
-    }
-    for (AtaxxCell c : cell.getJumpToCells()) {
-      logger.info("Second order: {}", c.getCellName());
-      moveList.add(new AtaxxJumpMove(cell, c));
-    }
+  public AtaxxSquareBoard() {
+    buildBoard();
 
-    return moveList;
+    this.colorToMove = Color.WHITE;
+
+    this.board[0][0].setPiece(new AtaxxPiece(Color.WHITE));
+    this.board[6][6].setPiece(new AtaxxPiece(Color.WHITE));
+    this.board[6][0].setPiece(new AtaxxPiece(Color.BLACK));
+    this.board[0][6].setPiece(new AtaxxPiece(Color.BLACK));
   }
 
-  public AtaxxPosition() {
+  private void buildBoard() {
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
         this.board[rank][file] = new AtaxxCell(getCellName(rank, file));
@@ -58,13 +54,6 @@ class AtaxxPosition implements Position<AtaxxMove> {
         initCellLinks(rank, file);
       }
     }
-
-    this.colorToMove = Color.WHITE;
-
-    this.board[0][0].setPiece(new AtaxxPiece(Color.WHITE));
-    this.board[6][6].setPiece(new AtaxxPiece(Color.WHITE));
-    this.board[6][0].setPiece(new AtaxxPiece(Color.BLACK));
-    this.board[0][6].setPiece(new AtaxxPiece(Color.BLACK));
   }
 
   private static String getCellName(int rank, int file) {
@@ -104,27 +93,9 @@ class AtaxxPosition implements Position<AtaxxMove> {
   }
 
   @Override
-  public void undoLastMove() {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
   public int evaluate() {
     // TODO Auto-generated method stub
     return 0;
-  }
-
-  @Override
-  public void printMoves() {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void makeMove(AtaxxMove m) {
-    // TODO Auto-generated method stub
-
   }
 
   @Override
