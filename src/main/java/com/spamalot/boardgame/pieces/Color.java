@@ -4,7 +4,7 @@ public enum Color {
   WHITE("o"),
   BLACK("x");
 
-  String display;
+  final String display;
 
   Color(String c) {
     this.display = c;

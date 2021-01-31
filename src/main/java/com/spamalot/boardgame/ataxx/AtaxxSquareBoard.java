@@ -10,10 +10,9 @@ import org.slf4j.LoggerFactory;
 
 class AtaxxSquareBoard extends AbstractAtaxxBoard {
   /** Logger for this class. */
-  static final Logger logger = LoggerFactory.getLogger(AtaxxSquareBoard.class);
+  private static final Logger logger = LoggerFactory.getLogger(AtaxxSquareBoard.class);
 
   private final AtaxxCell[][] board = new AtaxxCell[7][7];
-  private final Color colorToMove;
 
   @Override
   public List<AtaxxMove> getLegalMoves() {
@@ -36,10 +35,10 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
 
     this.colorToMove = Color.WHITE;
 
-    this.board[0][0].setPiece(new AtaxxPiece(Color.WHITE));
-    this.board[6][6].setPiece(new AtaxxPiece(Color.WHITE));
-    this.board[6][0].setPiece(new AtaxxPiece(Color.BLACK));
-    this.board[0][6].setPiece(new AtaxxPiece(Color.BLACK));
+    this.board[0][0].putDownPiece(new AtaxxPiece(Color.WHITE));
+    this.board[6][6].putDownPiece(new AtaxxPiece(Color.WHITE));
+    this.board[6][0].putDownPiece(new AtaxxPiece(Color.BLACK));
+    this.board[0][6].putDownPiece(new AtaxxPiece(Color.BLACK));
   }
 
   private void buildBoard() {

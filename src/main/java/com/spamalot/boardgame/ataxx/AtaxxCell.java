@@ -30,7 +30,7 @@ class AtaxxCell implements Cell<AtaxxPiece> {
   }
 
   @Override
-  public void setPiece(AtaxxPiece p) {
+  public void putDownPiece(AtaxxPiece p) {
     this.piece = p;
   }
 
@@ -45,7 +45,7 @@ class AtaxxCell implements Cell<AtaxxPiece> {
   }
 
   @Override
-  public AtaxxPiece removePiece() {
+  public AtaxxPiece pickUpPiece() {
     AtaxxPiece ret = this.piece;
     this.piece = null;
     return ret;

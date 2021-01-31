@@ -1,7 +1,6 @@
 package com.spamalot.boardgame.ataxx;
 
 import com.spamalot.boardgame.ai.MinMax;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,10 +19,10 @@ public final class Ataxx {
    */
   public static void main(final String[] args) {
     logger.info("Ataxx");
-    AbstractAtaxxBoard game = new AtaxxSquareBoard();
+    AtaxxSquareBoard game = new AtaxxSquareBoard();
     logger.info("Position:\n{}", game);
     game.getLegalMoves();
-    //MinMax<AtaxxPosition, AtaxxMove> searcher = new MinMax<>();
-    // searcher.moveList(game, 1);
+    MinMax<AtaxxSquareBoard, AtaxxMove> searcher = new MinMax<>();
+    searcher.moveList(game, 1);
   }
 }

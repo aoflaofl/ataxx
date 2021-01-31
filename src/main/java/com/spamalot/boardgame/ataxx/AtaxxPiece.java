@@ -4,14 +4,9 @@ import com.spamalot.boardgame.pieces.Color;
 import com.spamalot.boardgame.pieces.Piece;
 
 class AtaxxPiece implements Piece {
-  private Color color;
+  private final Color color;
 
   public AtaxxPiece(Color c) {
-    this.color = c;
-  }
-
-  @Override
-  public void setColor(Color c) {
     this.color = c;
   }
 
