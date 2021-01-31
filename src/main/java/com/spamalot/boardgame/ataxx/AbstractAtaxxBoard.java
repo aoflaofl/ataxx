@@ -20,11 +20,11 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   protected final List<AtaxxMove> moveList(final AtaxxCell cell) {
     List<AtaxxMove> moveList = new ArrayList<>();
     for (AtaxxCell c : cell.getGrowToCells()) {
-      this.LOG.info("First order: {}", c.getCellName());
+      LOG.info("First order: {}", c.getCellName());
       moveList.add(new AtaxxGrowMove(c));
     }
     for (AtaxxCell c : cell.getJumpToCells()) {
-      this.LOG.info("Second order: {}", c.getCellName());
+      LOG.info("Second order: {}", c.getCellName());
       moveList.add(new AtaxxJumpMove(cell, c));
     }
 
@@ -62,12 +62,12 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   @Override
   public void printMoves() {
     for (AtaxxMove move : this.moveStack) {
-      this.LOG.info("Move: {}", move);
+      LOG.info("Move: {}", move);
     }
   }
 
   public Color getColorToMove() {
-    return colorToMove;
+    return this.colorToMove;
   }
 
   public void setColorToMove(Color colorToMove) {
