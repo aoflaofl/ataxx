@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 class AtaxxSquareBoard extends AbstractAtaxxBoard {
   /** Logger for this class. */
-  private static final Logger logger = LoggerFactory.getLogger(AtaxxSquareBoard.class);
+  private static final Logger LOG = LoggerFactory.getLogger(AtaxxSquareBoard.class);
 
   private final AtaxxCell[][] board = new AtaxxCell[7][7];
 
@@ -21,8 +21,8 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
     for (int rank = 0; rank < 7; rank++) {
       for (int file = 0; file < 7; file++) {
         AtaxxCell cell = this.board[rank][file];
-        if (!cell.isEmpty() && cell.getPiece().getColor() == this.colorToMove) {
-          logger.info(cell.getCellName());
+        if (!cell.isEmpty() && cell.getPiece().getColor() == this.getColorToMove()) {
+          LOG.info(cell.getCellName());
           moveList.addAll(moveList(cell));
         }
       }
@@ -30,10 +30,10 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
     return new ArrayList<>(moveList);
   }
 
-  public AtaxxSquareBoard() {
+  AtaxxSquareBoard() {
     buildBoard();
 
-    this.colorToMove = Color.WHITE;
+    this.setColorToMove(Color.WHITE);
 
     this.board[0][0].putDownPiece(new AtaxxPiece(Color.WHITE));
     this.board[6][6].putDownPiece(new AtaxxPiece(Color.WHITE));
@@ -55,14 +55,14 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
     }
   }
 
-  private static String getCellName(int rank, int file) {
+  private static String getCellName(final int rank, final int file) {
     StringBuilder sb = new StringBuilder();
     sb.append((char) ('a' + file));
     sb.append(rank + 1);
     return sb.toString();
   }
 
-  private void initCellLinks(int rank, int file) {
+  private void initCellLinks(final int rank, final int file) {
     int targetRank;
     int targetFile;
 
@@ -83,7 +83,7 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
     }
   }
 
-  private void addCellLink(int rank, int file, int rankDelta, int fileDelta) {
+  private void addCellLink(final int rank, final int file, final int rankDelta, final int fileDelta) {
     if (rankDelta == 2 || rankDelta == -2 || fileDelta == 2 || fileDelta == -2) {
       this.board[rank][file].addJumpToCell(this.board[rank + rankDelta][file + fileDelta]);
     } else {

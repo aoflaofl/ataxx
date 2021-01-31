@@ -6,7 +6,7 @@ import com.spamalot.boardgame.pieces.Piece;
 class AtaxxPiece implements Piece {
   private final Color color;
 
-  public AtaxxPiece(Color c) {
+  AtaxxPiece(final Color c) {
     this.color = c;
   }
 

@@ -25,12 +25,12 @@ class AtaxxCell implements Cell<AtaxxPiece> {
 
   private final String cellName;
 
-  public AtaxxCell(String cellName) {
-    this.cellName = cellName;
+  AtaxxCell(final String name) {
+    this.cellName = name;
   }
 
   @Override
-  public void putDownPiece(AtaxxPiece p) {
+  public void putDownPiece(final AtaxxPiece p) {
     this.piece = p;
   }
 
@@ -51,11 +51,11 @@ class AtaxxCell implements Cell<AtaxxPiece> {
     return ret;
   }
 
-  void addGrowToCell(AtaxxCell cell) {
+  void addGrowToCell(final AtaxxCell cell) {
     this.growToCells.add(cell);
   }
 
-  void addJumpToCell(AtaxxCell cell) {
+  void addJumpToCell(final AtaxxCell cell) {
     this.jumpToCells.add(cell);
   }
 

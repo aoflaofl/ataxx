@@ -8,18 +8,24 @@ import org.slf4j.LoggerFactory;
 
 public class MinMax<P extends Position<M>, M extends Move<?>> {
   /** Logger for this class. */
-  private static final Logger logger = LoggerFactory.getLogger(MinMax.class);
+  private static final Logger LOG = LoggerFactory.getLogger(MinMax.class);
 
+  /**
+   * List All the moves to a depth.
+   * 
+   * @param p     Position
+   * @param depth How deep to search
+   */
   public void moveList(final P p, final int depth) {
     if (depth == 0) {
-      logger.info("Position:\n{}", p);
+      LOG.info("Position:\n{}", p);
       return;
     }
 
     List<M> moves = p.getLegalMoves();
 
     if (moves.isEmpty()) {
-      logger.info("Position:\n{}", p);
+      LOG.info("Position:\n{}", p);
       return;
     }
     for (M m : moves) {
@@ -30,6 +36,13 @@ public class MinMax<P extends Position<M>, M extends Move<?>> {
     }
   }
 
+  /**
+   * MinMax the position.
+   * 
+   * @param p     Position
+   * @param depth How many levels to search
+   * @return The evaluation of the position. TODO: This needs to be an object.
+   */
   public int minMax(final P p, final int depth) {
 
     if (depth == 0) {

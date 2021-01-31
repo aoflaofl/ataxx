@@ -11,20 +11,20 @@ import org.slf4j.LoggerFactory;
 
 abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   /** Logger for this class. */
-  private final Logger logger = LoggerFactory.getLogger(AbstractAtaxxBoard.class);
+  private static final Logger LOG = LoggerFactory.getLogger(AbstractAtaxxBoard.class);
 
-  protected Color colorToMove = Color.WHITE;
+  private Color colorToMove = Color.WHITE;
 
   private final Deque<AtaxxMove> moveStack = new ArrayDeque<>();
 
-  protected final List<AtaxxMove> moveList(AtaxxCell cell) {
+  protected final List<AtaxxMove> moveList(final AtaxxCell cell) {
     List<AtaxxMove> moveList = new ArrayList<>();
     for (AtaxxCell c : cell.getGrowToCells()) {
-      this.logger.info("First order: {}", c.getCellName());
+      this.LOG.info("First order: {}", c.getCellName());
       moveList.add(new AtaxxGrowMove(c));
     }
     for (AtaxxCell c : cell.getJumpToCells()) {
-      this.logger.info("Second order: {}", c.getCellName());
+      this.LOG.info("Second order: {}", c.getCellName());
       moveList.add(new AtaxxJumpMove(cell, c));
     }
 
@@ -32,12 +32,12 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   }
 
   @Override
-  public void makeMove(AtaxxMove move) {
+  public void makeMove(final AtaxxMove move) {
     AtaxxPiece piece;
     if (move instanceof AtaxxJumpMove) {
       piece = move.getFromCell().pickUpPiece();
     } else {
-      piece = new AtaxxPiece(this.colorToMove);
+      piece = new AtaxxPiece(this.getColorToMove());
     }
 
     move.getToCell().putDownPiece(piece);
@@ -62,8 +62,16 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   @Override
   public void printMoves() {
     for (AtaxxMove move : this.moveStack) {
-      this.logger.info("Move: {}", move);
+      this.LOG.info("Move: {}", move);
     }
+  }
+
+  public Color getColorToMove() {
+    return colorToMove;
+  }
+
+  public void setColorToMove(Color colorToMove) {
+    this.colorToMove = colorToMove;
   }
 
 }

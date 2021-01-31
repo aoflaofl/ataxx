@@ -6,7 +6,7 @@ public enum Color {
 
   final String display;
 
-  Color(String c) {
+  Color(final String c) {
     this.display = c;
   }
 

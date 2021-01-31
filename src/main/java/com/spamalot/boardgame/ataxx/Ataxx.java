@@ -9,8 +9,11 @@ import org.slf4j.LoggerFactory;
  *
  */
 public final class Ataxx {
+  private Ataxx() {
+  }
+
   /** Logger for this class. */
-  private static final Logger logger = LoggerFactory.getLogger(Ataxx.class);
+  private static final Logger LOG = LoggerFactory.getLogger(Ataxx.class);
 
   /**
    * Start here.
@@ -18,9 +21,9 @@ public final class Ataxx {
    * @param args The arguments
    */
   public static void main(final String[] args) {
-    logger.info("Ataxx");
+    LOG.info("Ataxx");
     AtaxxSquareBoard game = new AtaxxSquareBoard();
-    logger.info("Position:\n{}", game);
+    LOG.info("Position:\n{}", game);
     game.getLegalMoves();
     MinMax<AtaxxSquareBoard, AtaxxMove> searcher = new MinMax<>();
     searcher.moveList(game, 1);
