@@ -41,7 +41,18 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     }
 
     move.getToCell().putDownPiece(piece);
+
+    switchColor();
+
     this.moveStack.push(move);
+  }
+
+  private void switchColor() {
+    if (this.colorToMove == Color.WHITE) {
+      this.colorToMove = Color.BLACK;
+    } else {
+      this.colorToMove = Color.WHITE;
+    }
   }
 
   @Override
@@ -51,6 +62,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     if (move instanceof AtaxxJumpMove) {
       move.getFromCell().putDownPiece(piece);
     }
+    switchColor();
   }
 
   @Override

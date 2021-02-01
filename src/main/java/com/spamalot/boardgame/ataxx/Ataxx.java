@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Ataxx {
   private Ataxx() {
+    throw new UnsupportedOperationException();
   }
 
   /** Logger for this class. */
@@ -26,6 +27,6 @@ public final class Ataxx {
     LOG.info("Position:\n{}", game);
     game.getLegalMoves();
     MinMax<AtaxxSquareBoard, AtaxxMove> searcher = new MinMax<>();
-    searcher.moveList(game, 1);
+    searcher.moveList(game, 2);
   }
 }
