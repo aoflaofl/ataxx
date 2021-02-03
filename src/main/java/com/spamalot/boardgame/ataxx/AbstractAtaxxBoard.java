@@ -1,7 +1,7 @@
 package com.spamalot.boardgame.ataxx;
 
-import com.spamalot.boardgame.board.MoveStack;
 import com.spamalot.boardgame.board.Position;
+import com.spamalot.boardgame.moves.MoveStack;
 import com.spamalot.boardgame.pieces.Color;
 import java.util.ArrayDeque;
 import java.util.ArrayList;

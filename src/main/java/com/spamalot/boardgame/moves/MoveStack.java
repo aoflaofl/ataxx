@@ -1,4 +1,4 @@
-package com.spamalot.boardgame.board;
+package com.spamalot.boardgame.moves;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

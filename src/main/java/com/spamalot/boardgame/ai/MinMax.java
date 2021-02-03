@@ -1,7 +1,7 @@
 package com.spamalot.boardgame.ai;
 
-import com.spamalot.boardgame.board.Move;
 import com.spamalot.boardgame.board.Position;
+import com.spamalot.boardgame.moves.Move;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
