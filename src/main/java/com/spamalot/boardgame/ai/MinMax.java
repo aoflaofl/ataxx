@@ -18,19 +18,20 @@ public class MinMax<P extends Position<M>, M extends Move<?>> {
    */
   public void moveList(final P p, final int depth) {
     if (depth == 0) {
-      LOG.info("Position:\n{}", p);
+      p.printMoves();
+      LOG.debug("Position:\n{}", p);
       return;
     }
 
     List<M> moves = p.getLegalMoves();
 
     if (moves.isEmpty()) {
-      LOG.info("Position:\n{}", p);
+      p.printMoves();
+      LOG.debug("Position:\n{}", p);
       return;
     }
     for (M m : moves) {
       p.makeMove(m);
-      p.printMoves();
       moveList(p, depth - 1);
       p.undoLastMove();
     }

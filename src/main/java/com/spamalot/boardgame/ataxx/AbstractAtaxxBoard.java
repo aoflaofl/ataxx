@@ -1,14 +1,12 @@
 package com.spamalot.boardgame.ataxx;
 
-import com.spamalot.boardgame.board.Position;
-import com.spamalot.boardgame.moves.MoveStack;
-import com.spamalot.boardgame.pieces.Color;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.spamalot.boardgame.board.Position;
+import com.spamalot.boardgame.moves.MoveStack;
+import com.spamalot.boardgame.pieces.Color;
 
 abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   /** Logger for this class. */
@@ -75,7 +73,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
 
   @Override
   public void printMoves() {
-    LOG.info("Move: {}", moveStack);
+    LOG.info("Move: {}", this.moveStack);
   }
 
   public Color getColorToMove() {
