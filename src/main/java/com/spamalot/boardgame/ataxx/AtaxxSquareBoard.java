@@ -22,7 +22,7 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
       for (int file = 0; file < 7; file++) {
         AtaxxCell cell = this.board[rank][file];
         if (!cell.isEmpty() && cell.getPiece().getColor() == this.getColorToMove()) {
-          LOG.info(cell.getCellName());
+          LOG.debug(cell.getCellName());
           moveList.addAll(moveList(cell));
         }
       }
