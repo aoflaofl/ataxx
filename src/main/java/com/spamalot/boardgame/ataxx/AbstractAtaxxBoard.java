@@ -1,5 +1,6 @@
 package com.spamalot.boardgame.ataxx;
 
+import com.spamalot.boardgame.board.MoveStack;
 import com.spamalot.boardgame.board.Position;
 import com.spamalot.boardgame.pieces.Color;
 import java.util.ArrayDeque;
@@ -15,7 +16,8 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
 
   private Color colorToMove = Color.WHITE;
 
-  private final Deque<AtaxxMove> moveStack = new ArrayDeque<>();
+  // private final Deque<AtaxxMove> moveStack = new ArrayDeque<>();
+  private MoveStack<AtaxxMove> moveStack = new MoveStack<>();
 
   protected final List<AtaxxMove> moveList(final AtaxxCell cell) {
     List<AtaxxMove> moveList = new ArrayList<>();
@@ -73,9 +75,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
 
   @Override
   public void printMoves() {
-    for (AtaxxMove move : this.moveStack) {
-      LOG.info("Move: {}", move);
-    }
+    LOG.info("Move: {}", moveStack);
   }
 
   public Color getColorToMove() {
