@@ -26,6 +26,6 @@ public final class Ataxx {
     AtaxxSquareBoard game = new AtaxxSquareBoard();
     LOG.info("Position:\n{}", game);
     MinMax<AtaxxSquareBoard, AtaxxMove> searcher = new MinMax<>();
-    searcher.moveList(game, 1);
+    searcher.moveList(game, 3);
   }
 }

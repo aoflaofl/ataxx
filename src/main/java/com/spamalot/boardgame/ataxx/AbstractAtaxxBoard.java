@@ -73,7 +73,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
 
   @Override
   public void printMoves() {
-    LOG.info("Move: {}", this.moveStack);
+    LOG.info("Moves: {}", this.moveStack);
   }
 
   public Color getColorToMove() {
