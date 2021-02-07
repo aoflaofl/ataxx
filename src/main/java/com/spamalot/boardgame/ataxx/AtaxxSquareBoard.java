@@ -1,6 +1,6 @@
 package com.spamalot.boardgame.ataxx;
 
-import com.spamalot.boardgame.pieces.AtaxxPiece;
+import com.spamalot.boardgame.pieces.FlippablePiece;
 import com.spamalot.boardgame.pieces.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -36,10 +36,10 @@ class AtaxxSquareBoard extends AbstractAtaxxBoard {
 
     this.setColorToMove(Color.WHITE);
 
-    this.board[0][0].putDownPiece(new AtaxxPiece(Color.WHITE));
-    this.board[6][6].putDownPiece(new AtaxxPiece(Color.WHITE));
-    this.board[6][0].putDownPiece(new AtaxxPiece(Color.BLACK));
-    this.board[0][6].putDownPiece(new AtaxxPiece(Color.BLACK));
+    this.board[0][0].putDownPiece(new FlippablePiece(Color.WHITE));
+    this.board[6][6].putDownPiece(new FlippablePiece(Color.WHITE));
+    this.board[6][0].putDownPiece(new FlippablePiece(Color.BLACK));
+    this.board[0][6].putDownPiece(new FlippablePiece(Color.BLACK));
   }
 
   private void buildBoard() {

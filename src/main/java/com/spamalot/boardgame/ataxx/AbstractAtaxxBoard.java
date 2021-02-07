@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.spamalot.boardgame.board.Position;
 import com.spamalot.boardgame.moves.MoveStack;
-import com.spamalot.boardgame.pieces.AtaxxPiece;
+import com.spamalot.boardgame.pieces.FlippablePiece;
 import com.spamalot.boardgame.pieces.Color;
 
 abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
@@ -15,8 +15,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
 
   private Color colorToMove = Color.WHITE;
 
-  // private final Deque<AtaxxMove> moveStack = new ArrayDeque<>();
-  private MoveStack<AtaxxMove> moveStack = new MoveStack<>();
+  private final MoveStack<AtaxxMove> moveStack = new MoveStack<>();
 
   protected final List<AtaxxMove> moveList(final AtaxxCell cell) {
     List<AtaxxMove> moveList = new ArrayList<>();
@@ -34,11 +33,11 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
 
   @Override
   public void makeMove(final AtaxxMove move) {
-    AtaxxPiece piece;
+    FlippablePiece piece;
     if (move instanceof AtaxxJumpMove) {
       piece = move.getFromCell().pickUpPiece();
     } else {
-      piece = new AtaxxPiece(this.getColorToMove());
+      piece = new FlippablePiece(this.getColorToMove());
     }
 
     move.getToCell().putDownPiece(piece);
@@ -59,7 +58,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   @Override
   public void undoLastMove() {
     AtaxxMove move = this.moveStack.pop();
-    AtaxxPiece piece = move.getToCell().pickUpPiece();
+    FlippablePiece piece = move.getToCell().pickUpPiece();
     if (move instanceof AtaxxJumpMove) {
       move.getFromCell().putDownPiece(piece);
     }

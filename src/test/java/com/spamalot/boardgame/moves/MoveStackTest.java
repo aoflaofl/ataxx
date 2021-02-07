@@ -30,7 +30,7 @@ public class MoveStackTest {
 
   }
 
-  class TestMove implements Move<TestCell> {
+  private class TestMove implements Move<TestCell> {
 
     @Override
     public TestCell getFromCell() {
@@ -46,7 +46,7 @@ public class MoveStackTest {
 
   }
 
-  class TestCell implements Cell<TestPiece> {
+  private class TestCell implements Cell<TestPiece> {
 
     @Override
     public void putDownPiece(TestPiece p) {
@@ -74,7 +74,7 @@ public class MoveStackTest {
 
   }
 
-  class TestPiece implements Piece {
+  private class TestPiece implements Piece {
 
     @Override
     public Color getColor() {

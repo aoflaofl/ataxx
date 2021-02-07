@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 public class AtaxxPieceTest {
   @Test
   public void f() {
-    AtaxxPiece piece = new AtaxxPiece(Color.BLACK);
+    PieceImpl piece = new FlippablePiece(Color.BLACK);
     Assert.assertEquals(piece.getColor(), Color.BLACK);
     Assert.assertEquals(piece.toString(), Color.BLACK.toString());
 
-    piece = new AtaxxPiece(Color.WHITE);
+    piece = new FlippablePiece(Color.WHITE);
     Assert.assertEquals(piece.getColor(), Color.WHITE);
     Assert.assertEquals(piece.toString(), Color.WHITE.toString());
   }

@@ -1,14 +1,14 @@
 package com.spamalot.boardgame.ataxx;
 
 import com.spamalot.boardgame.board.Cell;
-import com.spamalot.boardgame.pieces.AtaxxPiece;
+import com.spamalot.boardgame.pieces.FlippablePiece;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class AtaxxCell implements Cell<AtaxxPiece> {
+class AtaxxCell implements Cell<FlippablePiece> {
 
-  private AtaxxPiece piece;
+  private FlippablePiece piece;
 
   private final List<AtaxxCell> growToCells = new ArrayList<>();
   private final List<AtaxxCell> jumpToCells = new ArrayList<>();
@@ -32,12 +32,12 @@ class AtaxxCell implements Cell<AtaxxPiece> {
   }
 
   @Override
-  public void putDownPiece(final AtaxxPiece p) {
+  public void putDownPiece(final FlippablePiece p) {
     this.piece = p;
   }
 
   @Override
-  public AtaxxPiece getPiece() {
+  public FlippablePiece getPiece() {
     return this.piece;
   }
 
@@ -47,8 +47,8 @@ class AtaxxCell implements Cell<AtaxxPiece> {
   }
 
   @Override
-  public AtaxxPiece pickUpPiece() {
-    AtaxxPiece ret = this.piece;
+  public FlippablePiece pickUpPiece() {
+    FlippablePiece ret = this.piece;
     this.piece = null;
     return ret;
   }

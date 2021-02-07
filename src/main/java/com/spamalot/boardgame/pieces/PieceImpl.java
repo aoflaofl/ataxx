@@ -1,10 +1,11 @@
 package com.spamalot.boardgame.pieces;
 
-public class AtaxxPiece implements Piece {
-  private final Color color;
+public class PieceImpl implements Piece {
 
-  public AtaxxPiece(final Color c) {
-    this.color = c;
+  protected Color color;
+
+  public PieceImpl() {
+    super();
   }
 
   @Override
@@ -16,4 +17,5 @@ public class AtaxxPiece implements Piece {
   public String toString() {
     return this.color.toString();
   }
+
 }
