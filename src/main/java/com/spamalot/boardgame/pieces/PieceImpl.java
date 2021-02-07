@@ -1,6 +1,6 @@
 package com.spamalot.boardgame.pieces;
 
-public class PieceImpl implements Piece {
+class PieceImpl implements Piece {
 
   protected Color color;
 

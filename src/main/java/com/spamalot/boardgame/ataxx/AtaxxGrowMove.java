@@ -1,6 +1,6 @@
 package com.spamalot.boardgame.ataxx;
 
-class AtaxxGrowMove extends AbstractAtaxxMove {
+class AtaxxGrowMove extends AtaxxMove {
 
   AtaxxGrowMove(final AtaxxCell toCell) {
     this.toCell = toCell;

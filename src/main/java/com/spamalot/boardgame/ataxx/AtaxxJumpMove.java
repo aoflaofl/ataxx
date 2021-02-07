@@ -1,6 +1,6 @@
 package com.spamalot.boardgame.ataxx;
 
-class AtaxxJumpMove extends AbstractAtaxxMove {
+class AtaxxJumpMove extends AtaxxMove {
 
   AtaxxJumpMove(final AtaxxCell fromCell, final AtaxxCell toCell) {
     this.fromCell = fromCell;
