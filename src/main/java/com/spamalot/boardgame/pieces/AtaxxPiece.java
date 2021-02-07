@@ -1,12 +1,9 @@
-package com.spamalot.boardgame.ataxx;
+package com.spamalot.boardgame.pieces;
 
-import com.spamalot.boardgame.pieces.Color;
-import com.spamalot.boardgame.pieces.Piece;
-
-class AtaxxPiece implements Piece {
+public class AtaxxPiece implements Piece {
   private final Color color;
 
-  AtaxxPiece(final Color c) {
+  public AtaxxPiece(final Color c) {
     this.color = c;
   }
 

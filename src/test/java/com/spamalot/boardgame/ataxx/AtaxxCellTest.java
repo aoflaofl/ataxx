@@ -2,6 +2,8 @@ package com.spamalot.boardgame.ataxx;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import com.spamalot.boardgame.pieces.AtaxxPiece;
 import com.spamalot.boardgame.pieces.Color;
 
 public class AtaxxCellTest {

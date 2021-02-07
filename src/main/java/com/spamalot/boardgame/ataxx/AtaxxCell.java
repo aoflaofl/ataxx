@@ -1,6 +1,8 @@
 package com.spamalot.boardgame.ataxx;
 
 import com.spamalot.boardgame.board.Cell;
+import com.spamalot.boardgame.pieces.AtaxxPiece;
+
 import java.util.ArrayList;
 import java.util.List;
 

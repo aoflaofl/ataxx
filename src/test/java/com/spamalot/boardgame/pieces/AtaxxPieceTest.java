@@ -1,8 +1,7 @@
-package com.spamalot.boardgame.ataxx;
+package com.spamalot.boardgame.pieces;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.spamalot.boardgame.pieces.Color;
 
 public class AtaxxPieceTest {
   @Test

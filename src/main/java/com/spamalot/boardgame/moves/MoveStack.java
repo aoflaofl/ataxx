@@ -7,14 +7,14 @@ import java.util.StringJoiner;
 
 public class MoveStack<T extends Move<?>> {
 
-  private final Deque<T> moveStack = new ArrayDeque<>();
+  private final Deque<T> stack = new ArrayDeque<>();
 
   public T pop() {
-    return this.moveStack.pop();
+    return this.stack.pop();
   }
 
   public void push(T move) {
-    this.moveStack.push(move);
+    this.stack.push(move);
   }
 
   @Override
@@ -22,7 +22,7 @@ public class MoveStack<T extends Move<?>> {
     int m = 1;
     StringJoiner sj = new StringJoiner(" ");
 
-    Iterator<T> p = this.moveStack.descendingIterator();
+    Iterator<T> p = this.stack.descendingIterator();
     while (p.hasNext()) {
       sj.add(m + ".");
       sj.add(p.next().toString());
