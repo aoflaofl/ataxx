@@ -19,19 +19,21 @@ public class MoveStack<T extends Move<?>> {
 
   @Override
   public String toString() {
-    int m = 1;
+    int moveNumber = 1;
+    // TODO: Assumes starting from beginning of game. Find way to start from a
+    // position later in game.
     StringJoiner sj = new StringJoiner(" ");
 
-    Iterator<T> p = this.stack.descendingIterator();
-    while (p.hasNext()) {
-      sj.add(m + ".");
-      sj.add(p.next().toString());
-      if (p.hasNext()) {
-      sj.add(p.next().toString());
+    Iterator<T> halfMove = this.stack.descendingIterator();
+    while (halfMove.hasNext()) {
+      sj.add(moveNumber + ".");
+      sj.add(halfMove.next().toString());
+      if (halfMove.hasNext()) {
+        sj.add(halfMove.next().toString());
       } else {
         sj.add("....");
       }
-      m++;
+      moveNumber++;
     }
 
     return "[ " + sj.toString() + " ]";
