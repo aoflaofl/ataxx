@@ -41,6 +41,13 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     }
 
     move.getToCell().putDownPiece(piece);
+    
+    for (AtaxxCell cell : move.getToCell().getGrowToCells()) {
+      if(!cell.isEmpty() && cell.getPiece().getColor() != this.colorToMove) {
+        cell.getPiece().flip();
+      }
+    }
+
 
     switchColor();
 

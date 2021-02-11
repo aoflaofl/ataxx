@@ -4,8 +4,8 @@ class PieceImpl implements Piece {
 
   protected Color color;
 
-  public PieceImpl() {
-    super();
+  public PieceImpl(final Color c) {
+    this.color = c;
   }
 
   @Override

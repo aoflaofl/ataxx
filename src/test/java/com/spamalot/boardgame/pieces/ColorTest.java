@@ -11,5 +11,6 @@ public class ColorTest {
 
     Assert.assertEquals(white.toString(), "o");
     Assert.assertEquals(black.toString(), "x");
+    Assert.assertEquals(black.getOpposite(), white);
   }
 }
