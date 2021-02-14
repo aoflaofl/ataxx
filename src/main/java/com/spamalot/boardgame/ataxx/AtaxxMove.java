@@ -41,13 +41,13 @@ abstract class AtaxxMove implements Move<AtaxxCell> {
   }
 
   /** Cells with pieces that have been flipped due to the move. */
-  private List<AtaxxCell> flippedCells = new ArrayList<>();
+  private final List<AtaxxCell> flippedCells = new ArrayList<>();
 
-  public void addFlipCell(final AtaxxCell cell) {
+  public final void addFlipCell(final AtaxxCell cell) {
     this.flippedCells.add(cell);
   }
 
-  public List<AtaxxCell> getFlippedCells() {
+  public final List<AtaxxCell> getFlippedCells() {
     return this.flippedCells;
   }
 }

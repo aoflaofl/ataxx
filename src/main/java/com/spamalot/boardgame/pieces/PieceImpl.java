@@ -21,7 +21,7 @@ class PieceImpl implements Piece {
     return this.color.toString();
   }
 
-  public void setColor(final Color c) {
+  public final void setColor(final Color c) {
     this.color = c;
   }
 }
