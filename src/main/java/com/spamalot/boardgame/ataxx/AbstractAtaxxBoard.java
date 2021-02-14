@@ -21,11 +21,15 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     List<AtaxxMove> moveList = new ArrayList<>();
     for (AtaxxCell c : cell.getGrowToCells()) {
       LOG.debug("First order: {}", c.getCellName());
-      moveList.add(new AtaxxGrowMove(c));
+      if (c.isEmpty()) {
+        moveList.add(new AtaxxGrowMove(c));
+      }
     }
     for (AtaxxCell c : cell.getJumpToCells()) {
       LOG.debug("Second order: {}", c.getCellName());
-      moveList.add(new AtaxxJumpMove(cell, c));
+      if (c.isEmpty()) {
+        moveList.add(new AtaxxJumpMove(cell, c));
+      }
     }
 
     return moveList;
@@ -45,6 +49,7 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     for (AtaxxCell cell : move.getToCell().getGrowToCells()) {
       if (!cell.isEmpty() && cell.getPiece().getColor() != this.colorToMove) {
         cell.getPiece().flip();
+        move.addFlipCell(cell);
       }
     }
 
@@ -67,6 +72,10 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     FlippablePiece piece = move.getToCell().pickUpPiece();
     if (move instanceof AtaxxJumpMove) {
       move.getFromCell().putDownPiece(piece);
+    }
+
+    for (AtaxxCell cell : move.getFlippedCells()) {
+      cell.getPiece().flip();
     }
     switchColor();
   }

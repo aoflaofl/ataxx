@@ -1,6 +1,8 @@
 package com.spamalot.boardgame.ataxx;
 
 import com.spamalot.boardgame.moves.Move;
+import java.util.ArrayList;
+import java.util.List;
 
 abstract class AtaxxMove implements Move<AtaxxCell> {
   /** Move from cell. */
@@ -36,5 +38,16 @@ abstract class AtaxxMove implements Move<AtaxxCell> {
     }
     sb.append(this.toCell.getCellName());
     return sb.toString();
+  }
+
+  /** Cells with pieces that have been flipped due to the move. */
+  private List<AtaxxCell> flippedCells = new ArrayList<>();
+
+  public void addFlipCell(final AtaxxCell cell) {
+    this.flippedCells.add(cell);
+  }
+
+  public List<AtaxxCell> getFlippedCells() {
+    return this.flippedCells;
   }
 }
