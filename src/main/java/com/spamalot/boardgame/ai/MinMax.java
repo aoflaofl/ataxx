@@ -17,24 +17,20 @@ public class MinMax<P extends Position<M>, M extends Move<?>> {
    * @param depth How deep to search
    */
   public void moveList(final P p, final int depth) {
-    if (depth == 0) {
-      p.printMoves();
-      LOG.debug("Position:\n{}", p);
-      return;
-    }
+    if (depth != 0) {
+      List<M> moves = p.getLegalMoves();
 
-    List<M> moves = p.getLegalMoves();
-
-    if (moves.isEmpty()) {
-      p.printMoves();
-      LOG.debug("Position:\n{}", p);
-      return;
+      if (!moves.isEmpty()) {
+        for (M m : moves) {
+          p.makeMove(m);
+          moveList(p, depth - 1);
+          p.undoLastMove();
+        }
+        return;
+      }
     }
-    for (M m : moves) {
-      p.makeMove(m);
-      moveList(p, depth - 1);
-      p.undoLastMove();
-    }
+    p.printMoves();
+    LOG.info("Position:\n{}", p);
   }
 
   /**
