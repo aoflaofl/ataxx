@@ -1,7 +1,7 @@
 package com.spamalot.boardgame.ataxx;
 
-import com.spamalot.boardgame.pieces.FlippablePiece;
 import com.spamalot.boardgame.pieces.Color;
+import com.spamalot.boardgame.pieces.FlippablePiece;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

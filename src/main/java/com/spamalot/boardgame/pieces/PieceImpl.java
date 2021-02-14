@@ -2,10 +2,13 @@ package com.spamalot.boardgame.pieces;
 
 class PieceImpl implements Piece {
 
-  protected Color color;
+  /**
+   * The color.
+   */
+  private Color color;
 
-  public PieceImpl(final Color c) {
-    this.color = c;
+  PieceImpl(final Color c) {
+    this.setColor(c);
   }
 
   @Override
@@ -18,4 +21,7 @@ class PieceImpl implements Piece {
     return this.color.toString();
   }
 
+  public void setColor(final Color c) {
+    this.color = c;
+  }
 }

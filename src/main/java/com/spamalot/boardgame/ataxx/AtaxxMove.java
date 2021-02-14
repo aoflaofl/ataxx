@@ -3,8 +3,10 @@ package com.spamalot.boardgame.ataxx;
 import com.spamalot.boardgame.moves.Move;
 
 abstract class AtaxxMove implements Move<AtaxxCell> {
-  AtaxxCell fromCell;
-  AtaxxCell toCell;
+  /** Move from cell. */
+  private AtaxxCell fromCell;
+  /** Move to cell. */
+  private AtaxxCell toCell;
 
   @Override
   public AtaxxCell getFromCell() {
@@ -24,5 +26,13 @@ abstract class AtaxxMove implements Move<AtaxxCell> {
     }
     sb.append(this.toCell.getCellName());
     return sb.toString();
+  }
+
+  public void setFromCell(final AtaxxCell c) {
+    this.fromCell = c;
+  }
+
+  public void setToCell(final AtaxxCell c) {
+    this.toCell = c;
   }
 }

@@ -9,8 +9,8 @@ public enum Color {
     BLACK.opposite = WHITE;
   }
 
-  Color opposite;
-  final String display;
+  private Color opposite;
+  private final String display;
 
   Color(final String c) {
     this.display = c;

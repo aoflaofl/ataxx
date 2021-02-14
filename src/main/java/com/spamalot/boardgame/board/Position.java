@@ -1,7 +1,7 @@
 package com.spamalot.boardgame.board;
 
-import java.util.List;
 import com.spamalot.boardgame.moves.Move;
+import java.util.List;
 
 public interface Position<T extends Move<?>> {
 

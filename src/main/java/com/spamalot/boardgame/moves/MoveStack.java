@@ -5,7 +5,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class MoveStack<T extends Move<?>> {
+public final class MoveStack<T extends Move<?>> {
 
   private final Deque<T> stack = new ArrayDeque<>();
 
@@ -13,7 +13,7 @@ public class MoveStack<T extends Move<?>> {
     return this.stack.pop();
   }
 
-  public void push(T move) {
+  public void push(final T move) {
     this.stack.push(move);
   }
 

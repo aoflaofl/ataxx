@@ -1,13 +1,18 @@
 package com.spamalot.boardgame.pieces;
 
-public class FlippablePiece extends PieceImpl implements Flippable {
+public final class FlippablePiece extends PieceImpl implements Flippable {
 
-  public FlippablePiece(Color c) {
+  /**
+   * A piece that can flip between two colors. Think Reversi.
+   * 
+   * @param c initial color
+   */
+  public FlippablePiece(final Color c) {
     super(c);
   }
 
   @Override
   public void flip() {
-    this.color = this.color.opposite;
+    this.setColor(this.getColor().getOpposite());
   }
 }

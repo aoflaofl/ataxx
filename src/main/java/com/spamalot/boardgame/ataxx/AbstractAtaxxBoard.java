@@ -1,13 +1,13 @@
 package com.spamalot.boardgame.ataxx;
 
+import com.spamalot.boardgame.board.Position;
+import com.spamalot.boardgame.moves.MoveStack;
+import com.spamalot.boardgame.pieces.Color;
+import com.spamalot.boardgame.pieces.FlippablePiece;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.spamalot.boardgame.board.Position;
-import com.spamalot.boardgame.moves.MoveStack;
-import com.spamalot.boardgame.pieces.FlippablePiece;
-import com.spamalot.boardgame.pieces.Color;
 
 abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
   /** Logger for this class. */
@@ -41,13 +41,12 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     }
 
     move.getToCell().putDownPiece(piece);
-    
+
     for (AtaxxCell cell : move.getToCell().getGrowToCells()) {
-      if(!cell.isEmpty() && cell.getPiece().getColor() != this.colorToMove) {
+      if (!cell.isEmpty() && cell.getPiece().getColor() != this.colorToMove) {
         cell.getPiece().flip();
       }
     }
-
 
     switchColor();
 
@@ -87,8 +86,8 @@ abstract class AbstractAtaxxBoard implements Position<AtaxxMove> {
     return this.colorToMove;
   }
 
-  public void setColorToMove(Color colorToMove) {
-    this.colorToMove = colorToMove;
+  public void setColorToMove(final Color c) {
+    this.colorToMove = c;
   }
 
 }
