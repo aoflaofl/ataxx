@@ -1,11 +1,10 @@
 package com.spamalot.boardgame.ataxx;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import com.spamalot.boardgame.pieces.FlippablePiece;
 import com.spamalot.boardgame.pieces.Color;
 import com.spamalot.boardgame.pieces.Flippable;
+import com.spamalot.boardgame.pieces.FlippablePiece;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class AtaxxCellTest {
 
