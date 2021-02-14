@@ -16,4 +16,8 @@ public interface Move<T extends Cell<?>> {
    * @return the Cell.
    */
   T getToCell();
+
+  void setToCell(T c);
+
+  void setFromCell(T c);
 }

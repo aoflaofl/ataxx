@@ -19,6 +19,16 @@ abstract class AtaxxMove implements Move<AtaxxCell> {
   }
 
   @Override
+  public void setFromCell(final AtaxxCell c) {
+    this.fromCell = c;
+  }
+
+  @Override
+  public void setToCell(final AtaxxCell c) {
+    this.toCell = c;
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     if (this.fromCell != null) {
@@ -26,13 +36,5 @@ abstract class AtaxxMove implements Move<AtaxxCell> {
     }
     sb.append(this.toCell.getCellName());
     return sb.toString();
-  }
-
-  public void setFromCell(final AtaxxCell c) {
-    this.fromCell = c;
-  }
-
-  public void setToCell(final AtaxxCell c) {
-    this.toCell = c;
   }
 }

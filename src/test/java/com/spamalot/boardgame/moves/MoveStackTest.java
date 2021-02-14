@@ -44,6 +44,18 @@ public class MoveStackTest {
       return null;
     }
 
+    @Override
+    public void setToCell(final TestCell c) {
+      // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setFromCell(final TestCell c) {
+      // TODO Auto-generated method stub
+
+    }
+
   }
 
   private class TestCell implements Cell<TestPiece> {
