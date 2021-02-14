@@ -1,18 +1,22 @@
 package com.spamalot.boardgame.pieces;
 
 public enum Color {
-  WHITE("o"),
-  BLACK("x");
+  /** Black. */
+  BLACK('x'),
+  /** White. */
+  WHITE('o');
 
   static {
     WHITE.opposite = BLACK;
     BLACK.opposite = WHITE;
   }
 
+  /** How to display this color. */
+  private final char display;
+  /** The opposite color. */
   private Color opposite;
-  private final String display;
 
-  Color(final String c) {
+  Color(final char c) {
     this.display = c;
   }
 
@@ -22,6 +26,6 @@ public enum Color {
 
   @Override
   public String toString() {
-    return this.display;
+    return "" + this.display;
   }
 }
